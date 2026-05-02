@@ -265,9 +265,9 @@ function scaleHighwayGame(expanded) {
   gameEmbed.style.height = `${scaledHeight}px`;
   gameEmbed.style.maxHeight = "none";
   gameEmbed.style.margin = "8px auto";
-  highwayFrame.style.width = "800px";
-  highwayFrame.style.height = "500px";
-  highwayFrame.style.transform = `scale(${scale})`;
+  highwayFrame.style.width = `${scaledWidth}px`;
+  highwayFrame.style.height = `${scaledHeight}px`;
+  highwayFrame.style.transform = "none";
 }
 
 function toggleMaxWindow(windowEl) {
