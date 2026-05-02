@@ -43,7 +43,7 @@ const shrineResult = document.getElementById("shrine-result");
 const highwayFrame = document.getElementById("highway-frame");
 const gameFocusCatcher = document.querySelector(".game-focus-catcher");
 
-let topZ = 60;
+let topZ = 100;
 let bootIndex = 0;
 let treatBalance = 0;
 let eyePressure = 0;
@@ -193,6 +193,7 @@ function placeStartupWindows() {
   highwayWindow.style.left = `${Math.round(gameLeft)}px`;
   highwayWindow.style.top = "350px";
   highwayWindow.style.zIndex = "45";
+  topZ = Math.max(topZ, 100);
 }
 
 function openWindow(id) {
