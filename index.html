@@ -7,7 +7,7 @@
     <meta name="description" content="CyclopsOS desktop concept for the Cyclops meme page." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -95,6 +95,18 @@
           <span class="icon-tile trash-icon"></span>
           <span>Trash Bin</span>
         </button>
+        <button class="desktop-icon featured" type="button" data-window="shrine-window">
+          <span class="icon-tile shrine-icon"></span>
+          <span>Eye Shrine</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="abstract-window">
+          <span class="icon-tile abstract-icon"></span>
+          <span>Abstract Map</span>
+        </button>
+        <button class="desktop-icon featured" type="button" data-window="highway-window">
+          <span class="icon-tile highway-icon"></span>
+          <span>Highway Havoc</span>
+        </button>
         <button class="desktop-icon hidden-icon" id="secret-icon" type="button" data-window="secret-window">
           <span class="icon-tile secret-icon"></span>
           <span>secret.eye</span>
@@ -105,7 +117,7 @@
         </button>
       </section>
 
-      <section class="window active hero-window" id="welcome-window" style="left: 27%; top: 11%;" aria-label="Welcome window">
+      <section class="window active focused hero-window initial-welcome" id="welcome-window" aria-label="Welcome window">
         <div class="title-bar">
           <span>Welcome to CyclopsOS</span>
           <div class="window-actions">
@@ -119,14 +131,15 @@
             <img src="https://www.cyclopsonabstract.xyz/static/media/catImg.461724f089b76827db62.png" alt="Cyclops pixel cat" />
           </div>
           <div>
-            <p class="eyebrow">Abstract chain household deity</p>
+            <p class="eyebrow">Abstract gaming icon meme</p>
             <h1>One Eye. One Vision.</h1>
-            <p>Cyclops is a pixel prophet built for meme magic, desktop chaos, and people who click every suspicious file.</p>
+            <p>Cyclops is the one-eyed mascot invading Abstract games: playable icon when possible, cursed item when necessary, community signal always.</p>
             <div class="quick-actions">
               <a href="https://dexscreener.com/abstract/0x0fc6e222f4e27189801909c610ae6172cb69e5a5" target="_blank" rel="noopener noreferrer">Buy</a>
               <a href="https://t.me/Cyclops_Portal" target="_blank" rel="noopener noreferrer">Join the Cult</a>
               <a href="https://x.com/CyclopsOnAbs" target="_blank" rel="noopener noreferrer">Twitter/X</a>
               <button type="button" data-window="games-window">Open Arcade</button>
+              <button type="button" data-window="shrine-window">Open Shrine</button>
             </div>
           </div>
         </div>
@@ -185,35 +198,78 @@
         <div class="menu-bar">Library&nbsp;&nbsp; Scores&nbsp;&nbsp; Cartridges&nbsp;&nbsp; Settings</div>
         <div class="window-content arcade-content">
           <div class="arcade-hero">
-            <h2>Game Launcher</h2>
-            <p>Drop your games into these slots and the desktop becomes the hub.</p>
+            <h2>Abstract Game Relics</h2>
+            <p>Cyclops belongs in every game on Abstract. If the cat cannot enter, an item, mask, treat, relic, or suspicious file should.</p>
           </div>
           <div class="game-grid">
             <article class="game-card ready">
               <div class="cart-art">01</div>
-              <h3>Garden Brawl</h3>
-              <p>Placeholder slot</p>
-              <button type="button">Insert Game</button>
+              <h3>Highway Havoc</h3>
+              <p>Playable Cyclops chaos. A real integrated cartridge for the Abstract game invasion.</p>
+              <button type="button" data-window="highway-window">Play Game</button>
             </article>
             <article class="game-card">
               <div class="cart-art">02</div>
-              <h3>One Eye Runner</h3>
-              <p>Coming soon</p>
-              <button type="button">Locked</button>
+              <h3>Relic Drop</h3>
+              <p>For games that add a Cyclops item: eye patch, treat bowl, cursed cat mask, garden tile.</p>
+              <button type="button">Inspect Relic</button>
             </article>
             <article class="game-card">
               <div class="cart-art">03</div>
-              <h3>Treat Hunt</h3>
-              <p>Coming soon</p>
-              <button type="button">Locked</button>
+              <h3>Degen Quest</h3>
+              <p>Community game nights, score hunts, tournament chaos, and deeply questionable strategies.</p>
+              <button type="button">Queue Quest</button>
             </article>
             <article class="game-card">
               <div class="cart-art">04</div>
-              <h3>Abstract Arena</h3>
-              <p>Coming soon</p>
-              <button type="button">Locked</button>
+              <h3>Missing Cyclops</h3>
+              <p>Games not yet blessed by the eye. The shrine is accepting diplomatic treat offerings.</p>
+              <button type="button">Summon Cat</button>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="window wide shrine-window" id="shrine-window" style="left: 21%; top: 12%;" aria-label="Eye shrine window">
+        <div class="title-bar"><span>Eye Shrine</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize shrine window">_</button><button type="button" class="close-window" aria-label="Close shrine window">x</button></div></div>
+        <div class="menu-bar">Offer&nbsp;&nbsp; Summon&nbsp;&nbsp; Bless Game&nbsp;&nbsp; Degenerate</div>
+        <div class="window-content shrine-content">
+          <div class="shrine-eye" aria-hidden="true"><span></span></div>
+          <div class="shrine-copy">
+            <p class="ritual-label">The Garden Has Chosen</p>
+            <h2>Summon Cyclops Into Every Game</h2>
+            <p>Offer a treat, bless a cartridge, and push the one-eyed mascot deeper into Abstract's gaming layer.</p>
+            <div class="shrine-offerings">
+              <button type="button" data-offering="treat">Treat</button>
+              <button type="button" data-offering="cartridge">Game Cartridge</button>
+              <button type="button" data-offering="relic">Cursed Relic</button>
+              <button type="button" data-offering="degen">Degen Energy</button>
+            </div>
+            <p id="shrine-result">Awaiting offering.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="window wide" id="abstract-window" style="left: 25%; top: 18%;" aria-label="Abstract map window">
+        <div class="title-bar"><span>Abstract Map</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize abstract map">_</button><button type="button" class="close-window" aria-label="Close abstract map">x</button></div></div>
+        <div class="menu-bar">Games&nbsp;&nbsp; Relics&nbsp;&nbsp; Collabs&nbsp;&nbsp; Community</div>
+        <div class="window-content abstract-map">
+          <h2>Onchain Game Invasion Plan</h2>
+          <div class="map-lanes">
+            <article><strong>Playable</strong><span>Cyclops appears as a character, skin, pet, or avatar.</span></article>
+            <article><strong>Relic</strong><span>A Cyclops item appears when the cat cannot.</span></article>
+            <article><strong>Quest</strong><span>Community challenges, scores, tournaments, and cult raids.</span></article>
+            <article><strong>Signal</strong><span>Memes, clips, and proof that the eye was there.</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="window wide games-window active initial-game" id="highway-window" aria-label="Highway Havoc game window">
+        <div class="title-bar"><span>CYCLOPS: Highway Havoc</span><div class="window-actions"><button type="button" class="max-window" aria-label="Maximize Highway Havoc window">[]</button><button type="button" class="min-window" aria-label="Minimize Highway Havoc window">_</button><button type="button" class="close-window" aria-label="Close Highway Havoc window">x</button></div></div>
+        <div class="menu-bar">Cartridge&nbsp;&nbsp; Score&nbsp;&nbsp; Degen&nbsp;&nbsp; Fullscreen</div>
+        <div class="window-content game-embed">
+          <iframe id="highway-frame" src="games/highway-havoc.html" data-src="games/highway-havoc.html" title="CYCLOPS: Highway Havoc"></iframe>
+          <button class="game-focus-catcher" type="button" aria-label="Focus Highway Havoc game"></button>
         </div>
       </section>
 
@@ -374,6 +430,8 @@
         <button type="button" data-window="terminal-window">Prophecy Terminal</button>
         <button type="button" data-window="treat-window">Treat.exe</button>
         <button type="button" data-window="prophecy-window">Prophecy Generator</button>
+        <button type="button" data-window="shrine-window">Eye Shrine</button>
+        <button type="button" data-window="abstract-window">Abstract Map</button>
         <hr />
         <button type="button" data-theme="classic">Classic Vision</button>
         <button type="button" data-theme="night">Night Vision</button>
