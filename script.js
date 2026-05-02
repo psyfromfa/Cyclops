@@ -238,8 +238,41 @@ function minimizeWindow(windowEl) {
   chirp();
 }
 
+function scaleHighwayGame(expanded) {
+  if (!highwayFrame) return;
+
+  const gameEmbed = highwayFrame.closest(".game-embed");
+  if (!gameEmbed) return;
+
+  if (!expanded) {
+    gameEmbed.style.width = "680px";
+    gameEmbed.style.height = "425px";
+    gameEmbed.style.margin = "";
+    highwayFrame.style.width = "800px";
+    highwayFrame.style.height = "500px";
+    highwayFrame.style.transform = "scale(0.85)";
+    return;
+  }
+
+  const availableWidth = Math.max(320, window.innerWidth - 72);
+  const availableHeight = Math.max(260, window.innerHeight - 150);
+  const scale = Math.min(availableWidth / 800, availableHeight / 500);
+  const scaledWidth = Math.floor(800 * scale);
+  const scaledHeight = Math.floor(500 * scale);
+
+  gameEmbed.style.width = `${scaledWidth}px`;
+  gameEmbed.style.height = `${scaledHeight}px`;
+  gameEmbed.style.margin = "8px auto";
+  highwayFrame.style.width = "800px";
+  highwayFrame.style.height = "500px";
+  highwayFrame.style.transform = `scale(${scale})`;
+}
+
 function toggleMaxWindow(windowEl) {
   windowEl.classList.toggle("maxed");
+  if (windowEl.id === "highway-window") {
+    scaleHighwayGame(windowEl.classList.contains("maxed"));
+  }
   focusWindow(windowEl);
 }
 
@@ -541,6 +574,13 @@ window.setTimeout(() => {
   showToast("Cyclops has been staring for one full minute.");
   raisePressure(1, "One-minute stare logged.");
 }, 60000);
+
+window.addEventListener("resize", () => {
+  const highwayWindow = document.getElementById("highway-window");
+  if (highwayWindow?.classList.contains("maxed")) {
+    scaleHighwayGame(true);
+  }
+});
 
 typeBoot();
 updateClock();
