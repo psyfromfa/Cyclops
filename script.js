@@ -254,8 +254,8 @@ function scaleHighwayGame(expanded) {
     return;
   }
 
-  const availableWidth = Math.max(320, window.innerWidth - 72);
-  const availableHeight = Math.max(260, window.innerHeight - 150);
+  const availableWidth = Math.max(320, window.innerWidth - 96);
+  const availableHeight = Math.max(260, window.innerHeight - 220);
   const scale = Math.min(availableWidth / 800, availableHeight / 500);
   const scaledWidth = Math.floor(800 * scale);
   const scaledHeight = Math.floor(500 * scale);
