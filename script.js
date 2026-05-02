@@ -247,6 +247,7 @@ function scaleHighwayGame(expanded) {
   if (!expanded) {
     gameEmbed.style.width = "680px";
     gameEmbed.style.height = "425px";
+    gameEmbed.style.maxHeight = "";
     gameEmbed.style.margin = "";
     highwayFrame.style.width = "800px";
     highwayFrame.style.height = "500px";
@@ -262,6 +263,7 @@ function scaleHighwayGame(expanded) {
 
   gameEmbed.style.width = `${scaledWidth}px`;
   gameEmbed.style.height = `${scaledHeight}px`;
+  gameEmbed.style.maxHeight = "none";
   gameEmbed.style.margin = "8px auto";
   highwayFrame.style.width = "800px";
   highwayFrame.style.height = "500px";
