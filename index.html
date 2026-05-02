@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CyclopsOS</title>
+    <meta name="description" content="CyclopsOS desktop concept for the Cyclops meme page." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="boot-screen" class="boot-screen">
+      <div class="boot-orb" aria-hidden="true"></div>
+      <div class="boot-shell">
+        <div class="boot-title">CyclopsOS v1.1.0</div>
+        <div id="boot-log" class="boot-log" aria-live="polite"></div>
+        <div class="boot-meter"><span id="boot-meter-fill"></span></div>
+        <button id="enter-os" class="enter-os" type="button">Press any key to enter</button>
+      </div>
+    </div>
+
+    <main class="desktop" aria-label="CyclopsOS desktop">
+      <div class="desktop-wallpaper">
+        <div class="aurora"></div>
+        <div class="sun"></div>
+        <div class="mountains"></div>
+        <div class="grid-floor"></div>
+        <div class="scanlines"></div>
+      </div>
+
+      <aside class="system-widget" id="eye-widget" aria-label="Cyclops eye widget">
+        <div class="widget-eye"><span></span></div>
+        <div class="widget-copy">
+          <strong>VISION ONLINE</strong>
+          <span id="widget-status">Treat balance: 0</span>
+        </div>
+      </aside>
+
+      <section class="desktop-icons" aria-label="Desktop icons">
+        <button class="desktop-icon" type="button" data-window="token-window">
+          <span class="icon-tile eye-icon"></span>
+          <span>Buy.exe</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="social-window">
+          <span class="icon-tile signal-icon"></span>
+          <span>Cult Chat</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="story-window">
+          <span class="icon-tile scroll-icon"></span>
+          <span>Origin.txt</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="gallery-window">
+          <span class="icon-tile gallery-icon"></span>
+          <span>Meme Files</span>
+        </button>
+        <button class="desktop-icon featured" type="button" data-window="games-window">
+          <span class="icon-tile cartridge-icon"></span>
+          <span>Arcade</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="profile-window">
+          <span class="icon-tile card-icon"></span>
+          <span>Profile</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="terminal-window">
+          <span class="icon-tile terminal-icon"></span>
+          <span>Prophecy</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="faq-window">
+          <span class="icon-tile help-icon"></span>
+          <span>FAQ</span>
+        </button>
+        <button class="desktop-icon danger" type="button" data-window="forbidden-window">
+          <span class="icon-tile warning-icon"></span>
+          <span>Do Not Pet</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="treat-window">
+          <span class="icon-tile treat-icon"></span>
+          <span>Treat.exe</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="prophecy-window">
+          <span class="icon-tile prophecy-icon"></span>
+          <span>Prophecy</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="garden-window">
+          <span class="icon-tile cam-icon"></span>
+          <span>Garden Cam</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="rank-window">
+          <span class="icon-tile rank-icon"></span>
+          <span>Cult Rank</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="trash-window">
+          <span class="icon-tile trash-icon"></span>
+          <span>Trash Bin</span>
+        </button>
+        <button class="desktop-icon hidden-icon" id="secret-icon" type="button" data-window="secret-window">
+          <span class="icon-tile secret-icon"></span>
+          <span>secret.eye</span>
+        </button>
+        <button class="desktop-icon hidden-icon" id="scores-icon" type="button" data-window="scores-window">
+          <span class="icon-tile score-icon"></span>
+          <span>scores.dat</span>
+        </button>
+      </section>
+
+      <section class="window active hero-window" id="welcome-window" style="left: 27%; top: 11%;" aria-label="Welcome window">
+        <div class="title-bar">
+          <span>Welcome to CyclopsOS</span>
+          <div class="window-actions">
+            <button type="button" class="min-window" aria-label="Minimize welcome window">_</button>
+            <button type="button" class="close-window" aria-label="Close welcome window">x</button>
+          </div>
+        </div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Cult&nbsp;&nbsp; Help</div>
+        <div class="window-content welcome-content">
+          <div class="hero-portrait">
+            <img src="https://www.cyclopsonabstract.xyz/static/media/catImg.461724f089b76827db62.png" alt="Cyclops pixel cat" />
+          </div>
+          <div>
+            <p class="eyebrow">Abstract chain household deity</p>
+            <h1>One Eye. One Vision.</h1>
+            <p>Cyclops is a pixel prophet built for meme magic, desktop chaos, and people who click every suspicious file.</p>
+            <div class="quick-actions">
+              <a href="https://dexscreener.com/abstract/0x0fc6e222f4e27189801909c610ae6172cb69e5a5" target="_blank" rel="noopener noreferrer">Buy</a>
+              <a href="https://t.me/Cyclops_Portal" target="_blank" rel="noopener noreferrer">Join the Cult</a>
+              <a href="https://x.com/CyclopsOnAbs" target="_blank" rel="noopener noreferrer">Twitter/X</a>
+              <button type="button" data-window="games-window">Open Arcade</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="window" id="token-window" style="left: 50%; top: 15%;" aria-label="Token window">
+        <div class="title-bar"><span>Buy.exe</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize token window">_</button><button type="button" class="close-window" aria-label="Close token window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Help</div>
+        <div class="window-content token-panel">
+          <span class="status-light"></span>
+          <h2>CYCLOPS</h2>
+          <p class="big-stat">One eye watching the chart.</p>
+          <p>Links open in a new tab. Bring your own research and your own treats.</p>
+          <div class="quick-actions">
+            <a href="https://dexscreener.com/abstract/0x0fc6e222f4e27189801909c610ae6172cb69e5a5" target="_blank" rel="noopener noreferrer">Dexscreener</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="window" id="social-window" style="left: 42%; top: 24%;" aria-label="Social window">
+        <div class="title-bar"><span>Cult Chat</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize social window">_</button><button type="button" class="close-window" aria-label="Close social window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Help</div>
+        <div class="window-content social-grid">
+          <a href="https://x.com/CyclopsOnAbs" target="_blank" rel="noopener noreferrer"><span>X</span><small>Signal feed</small></a>
+          <a href="https://t.me/Cyclops_Portal" target="_blank" rel="noopener noreferrer"><span>TG</span><small>Cult portal</small></a>
+          <a href="https://dexscreener.com/abstract/0x0fc6e222f4e27189801909c610ae6172cb69e5a5" target="_blank" rel="noopener noreferrer"><span>DEX</span><small>Chart room</small></a>
+        </div>
+      </section>
+
+      <section class="window wide" id="story-window" style="left: 22%; top: 10%;" aria-label="Origin story window">
+        <div class="title-bar"><span>Origin.txt</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize story window">_</button><button type="button" class="close-window" aria-label="Close story window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Help</div>
+        <div class="window-content document">
+          <h2>Cyclops Story</h2>
+          <p>It all started in Dith's garden. A one-eyed stray appeared like a glitch in the matrix: scrappy, silent, and somehow staring straight into your soul.</p>
+          <p>Dith's wife said he stays. Dith agreed on one condition: he gets to name him. Thus, Cyclops was born.</p>
+          <p>Now he is part of the chain. One eye. Nine lives. Infinite possibilities. Welcome to the cult of Cyclops.</p>
+        </div>
+      </section>
+
+      <section class="window wide" id="gallery-window" style="left: 19%; top: 8%;" aria-label="Gallery window">
+        <div class="title-bar"><span>Meme Files</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize gallery window">_</button><button type="button" class="close-window" aria-label="Close gallery window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; Sort&nbsp;&nbsp; View</div>
+        <div class="window-content gallery-grid">
+          <button type="button"><img src="https://www.cyclopsonabstract.xyz/static/media/gallery4.70f246329ee9bf708491.png" alt="Cyclops gallery artwork" /><span>garden-sighting.png</span></button>
+          <button type="button"><img src="https://www.cyclopsonabstract.xyz/static/media/gallery6.cddc9ce4a6a508769803.png" alt="Cyclops gallery artwork" /><span>chain-cat.png</span></button>
+          <button type="button"><img src="https://www.cyclopsonabstract.xyz/static/media/gallery5.635a905b0986a26e763b.png" alt="Cyclops gallery artwork" /><span>prophet-mode.png</span></button>
+          <button type="button"><img src="https://www.cyclopsonabstract.xyz/static/media/gallery1.5eed12cb02cb875e7b8c.png" alt="Cyclops gallery artwork" /><span>one-eye.png</span></button>
+          <button type="button"><img src="https://www.cyclopsonabstract.xyz/static/media/gallery2.90a7e0d38102d5d884db.png" alt="Cyclops gallery artwork" /><span>cult-card.png</span></button>
+          <button type="button"><img src="https://www.cyclopsonabstract.xyz/static/media/gallery3.c2981df386ed39212e77.png" alt="Cyclops gallery artwork" /><span>abstract-cat.png</span></button>
+        </div>
+      </section>
+
+      <section class="window wide games-window" id="games-window" style="left: 24%; top: 13%;" aria-label="Game launcher window">
+        <div class="title-bar"><span>Cyclops Arcade</span><div class="window-actions"><button type="button" class="max-window" aria-label="Maximize arcade window">[]</button><button type="button" class="min-window" aria-label="Minimize arcade window">_</button><button type="button" class="close-window" aria-label="Close arcade window">x</button></div></div>
+        <div class="menu-bar">Library&nbsp;&nbsp; Scores&nbsp;&nbsp; Cartridges&nbsp;&nbsp; Settings</div>
+        <div class="window-content arcade-content">
+          <div class="arcade-hero">
+            <h2>Game Launcher</h2>
+            <p>Drop your games into these slots and the desktop becomes the hub.</p>
+          </div>
+          <div class="game-grid">
+            <article class="game-card ready">
+              <div class="cart-art">01</div>
+              <h3>Garden Brawl</h3>
+              <p>Placeholder slot</p>
+              <button type="button">Insert Game</button>
+            </article>
+            <article class="game-card">
+              <div class="cart-art">02</div>
+              <h3>One Eye Runner</h3>
+              <p>Coming soon</p>
+              <button type="button">Locked</button>
+            </article>
+            <article class="game-card">
+              <div class="cart-art">03</div>
+              <h3>Treat Hunt</h3>
+              <p>Coming soon</p>
+              <button type="button">Locked</button>
+            </article>
+            <article class="game-card">
+              <div class="cart-art">04</div>
+              <h3>Abstract Arena</h3>
+              <p>Coming soon</p>
+              <button type="button">Locked</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="window" id="profile-window" style="left: 44%; top: 10%;" aria-label="Profile window">
+        <div class="title-bar"><span>Profile</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize profile window">_</button><button type="button" class="close-window" aria-label="Close profile window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Help</div>
+        <div class="window-content profile-card">
+          <img src="https://www.cyclopsonabstract.xyz/static/media/profileCard.8c8824a66da6adfe7e65.png" alt="Cyclops profile card" />
+        </div>
+      </section>
+
+      <section class="window terminal" id="terminal-window" style="left: 30%; top: 18%;" aria-label="Prophecy terminal">
+        <div class="title-bar"><span>Prophecy Terminal</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize terminal window">_</button><button type="button" class="close-window" aria-label="Close terminal window">x</button></div></div>
+        <div class="terminal-content" id="terminal-output">
+          <p>CyclopsOS [Version 1.1.0]</p>
+          <p>Type <strong>help</strong>, <strong>games</strong>, <strong>vision</strong>, <strong>treat</strong>, or <strong>summon</strong>.</p>
+          <label>C:\Cyclops\Cult&gt; <input id="terminal-input" autocomplete="off" spellcheck="false" /></label>
+        </div>
+      </section>
+
+      <section class="window" id="faq-window" style="left: 51%; top: 30%;" aria-label="FAQ window">
+        <div class="title-bar"><span>FAQ</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize FAQ window">_</button><button type="button" class="close-window" aria-label="Close FAQ window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Help</div>
+        <div class="window-content">
+          <details open>
+            <summary>Why one eye?</summary>
+            <p>Some say street brawl. Some say on-chain vision. Either way, he sees more than most.</p>
+          </details>
+          <details>
+            <summary>Where do my games go?</summary>
+            <p>The Arcade window is ready for your game links, embeds, or local pages.</p>
+          </details>
+          <details>
+            <summary>Can I pet Cyclops?</summary>
+            <p>Only if your vibes are pure and the treat economy is respected.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="window" id="forbidden-window" style="left: 42%; top: 20%;" aria-label="Do not pet window">
+        <div class="title-bar"><span>Do Not Pet</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize forbidden window">_</button><button type="button" class="close-window" aria-label="Close forbidden window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Edit&nbsp;&nbsp; Consequences&nbsp;&nbsp; Help</div>
+        <div class="window-content">
+          <h2>Seriously?</h2>
+          <p>The eye has noticed your clicking behavior.</p>
+          <button class="panic-button" id="panic-button" type="button">Pet anyway</button>
+        </div>
+      </section>
+
+      <section class="window" id="treat-window" style="left: 48%; top: 20%;" aria-label="Treat window">
+        <div class="title-bar"><span>Treat.exe</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize treat window">_</button><button type="button" class="close-window" aria-label="Close treat window">x</button></div></div>
+        <div class="menu-bar">Offer&nbsp;&nbsp; Bribe&nbsp;&nbsp; Apologize&nbsp;&nbsp; Help</div>
+        <div class="window-content treat-content">
+          <h2>Treat Offering</h2>
+          <p id="treat-reaction">Cyclops is pretending not to care.</p>
+          <div class="treat-bowl" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="quick-actions">
+            <button type="button" id="offer-treat">Offer Treat</button>
+            <button type="button" id="offer-suspicious-treat">Offer Suspicious Treat</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="window" id="prophecy-window" style="left: 45%; top: 24%;" aria-label="Prophecy generator window">
+        <div class="title-bar"><span>Prophecy Generator</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize prophecy window">_</button><button type="button" class="close-window" aria-label="Close prophecy window">x</button></div></div>
+        <div class="menu-bar">Generate&nbsp;&nbsp; Interpret&nbsp;&nbsp; Doubt&nbsp;&nbsp; Help</div>
+        <div class="window-content prophecy-content">
+          <h2>Daily Vision</h2>
+          <p id="prophecy-text">Press the button. The eye is bored.</p>
+          <button class="panic-button" id="generate-prophecy" type="button">Generate Prophecy</button>
+        </div>
+      </section>
+
+      <section class="window wide" id="garden-window" style="left: 18%; top: 14%;" aria-label="Garden camera window">
+        <div class="title-bar"><span>Garden Cam 03</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize garden cam">_</button><button type="button" class="close-window" aria-label="Close garden cam">x</button></div></div>
+        <div class="menu-bar">Camera&nbsp;&nbsp; Static&nbsp;&nbsp; Enhance&nbsp;&nbsp; Report</div>
+        <div class="window-content garden-content">
+          <div class="camera-feed">
+            <span class="record-dot"></span>
+            <p id="garden-message">NO MOTION DETECTED</p>
+          </div>
+          <div class="quick-actions">
+            <button type="button" id="enhance-garden">Enhance</button>
+            <button type="button" id="tap-glass">Tap Glass</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="window" id="rank-window" style="left: 53%; top: 18%;" aria-label="Cult rank window">
+        <div class="title-bar"><span>Cult Rankings</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize rank window">_</button><button type="button" class="close-window" aria-label="Close rank window">x</button></div></div>
+        <div class="menu-bar">Rank&nbsp;&nbsp; Duties&nbsp;&nbsp; Treat Tax&nbsp;&nbsp; Help</div>
+        <div class="window-content rank-content">
+          <h2 id="rank-name">Unblinking Intern</h2>
+          <p id="rank-detail">Open things. Click suspiciously. Earn Cyclops' mild concern.</p>
+          <ol>
+            <li>Unblinking Intern</li>
+            <li>Treat Courier</li>
+            <li>Patio Mystic</li>
+            <li>One-Eye Lieutenant</li>
+            <li>Indoor God Assistant</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="window" id="trash-window" style="left: 39%; top: 29%;" aria-label="Trash bin window">
+        <div class="title-bar"><span>Trash Bin</span><div class="window-actions"><button type="button" class="min-window" aria-label="Minimize trash window">_</button><button type="button" class="close-window" aria-label="Close trash window">x</button></div></div>
+        <div class="menu-bar">File&nbsp;&nbsp; Restore&nbsp;&nbsp; Regret&nbsp;&nbsp; Help</div>
+        <div class="window-content trash-list">
+          <button type="button" data-trash="rugplan_final_FINAL2.txt">rugplan_final_FINAL2.txt</button>
+          <button type="button" data-trash="definitely_not_alpha.png">definitely_not_alpha.png</button>
+          <button type="button" data-trash="two_eye_manifesto.exe">two_eye_manifesto.exe</button>
+          <button type="button" data-trash="apology_to_the_bowl.doc">apology_to_the_bowl.doc</button>
+        </div>
+      </section>
+
+      <section class="window" id="secret-window" style="left: 56%; top: 18%;" aria-label="Secret window">
+        <div class="title-bar"><span>secret.eye</span><div class="window-actions"><button type="button" class="close-window" aria-label="Close secret window">x</button></div></div>
+        <div class="menu-bar">Hidden&nbsp;&nbsp; Unlocked&nbsp;&nbsp; Very Normal</div>
+        <div class="window-content secret-content">
+          <h2>The Eye Opens</h2>
+          <p>You found the hidden file. This is where we can place whitelist puzzles, secret links, or rotating meme drops.</p>
+        </div>
+      </section>
+
+      <section class="window" id="scores-window" style="left: 58%; top: 24%;" aria-label="High scores window">
+        <div class="title-bar"><span>scores.dat</span><div class="window-actions"><button type="button" class="close-window" aria-label="Close scores window">x</button></div></div>
+        <div class="menu-bar">Arcade&nbsp;&nbsp; Scores&nbsp;&nbsp; Totally Real</div>
+        <div class="window-content score-content">
+          <h2>High Scores</h2>
+          <p>1. CYCLOPS - 999999</p>
+          <p>2. DITHS_GARDEN - 777777</p>
+          <p>3. YOU_SOON - 000001</p>
+        </div>
+      </section>
+
+      <div id="blue-screen" class="blue-screen" hidden>
+        <h2>:(</h2>
+        <p>Your cult ran into a problem and needs more treats.</p>
+        <p>ERROR_CODE: ONE_EYE_TOO_POWERFUL</p>
+        <button id="restart-os" type="button">Restart CyclopsOS</button>
+      </div>
+
+      <nav class="taskbar" aria-label="Taskbar">
+        <button class="start-button" id="start-button" type="button"><span class="mini-eye"></span> Start</button>
+        <div class="task-tabs" id="task-tabs"></div>
+        <div class="system-tray">
+          <button id="sound-toggle" type="button" aria-label="Toggle sound">SND</button>
+          <div class="clock" id="clock">00:00</div>
+        </div>
+      </nav>
+
+      <div class="start-menu" id="start-menu">
+        <div class="start-brand"><span class="mini-eye"></span><strong>CyclopsOS</strong></div>
+        <button type="button" data-window="welcome-window">Welcome</button>
+        <button type="button" data-window="games-window">Cyclops Arcade</button>
+        <button type="button" data-window="story-window">Origin Story</button>
+        <button type="button" data-window="gallery-window">Meme Files</button>
+        <button type="button" data-window="terminal-window">Prophecy Terminal</button>
+        <button type="button" data-window="treat-window">Treat.exe</button>
+        <button type="button" data-window="prophecy-window">Prophecy Generator</button>
+        <hr />
+        <button type="button" data-theme="classic">Classic Vision</button>
+        <button type="button" data-theme="night">Night Vision</button>
+        <button type="button" data-theme="cursed">Cursed Vision</button>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
