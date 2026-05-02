@@ -135,8 +135,12 @@ a {
 }
 
 .desktop-wallpaper {
-  background: linear-gradient(180deg, #050207 0%, #130606 46%, #341004 100%);
+  background:
+    radial-gradient(circle at 72% 18%, rgba(255, 118, 13, 0.24), transparent 18%),
+    radial-gradient(circle at 18% 18%, rgba(97, 247, 255, 0.14), transparent 20%),
+    linear-gradient(180deg, #03050d 0%, #090515 36%, #19071b 62%, #090207 100%);
   inset: 0;
+  overflow: hidden;
   position: absolute;
 }
 
@@ -154,14 +158,15 @@ a {
 .sun {
   background:
     linear-gradient(transparent 0 12%, rgba(8, 3, 4, 0.88) 12% 17%, transparent 17% 28%, rgba(8, 3, 4, 0.88) 28% 33%, transparent 33% 47%, rgba(8, 3, 4, 0.88) 47% 53%, transparent 53%),
-    radial-gradient(circle, #ffbd54, var(--orange) 52%, #761f04 72%, transparent 73%);
-  height: 250px;
-  left: 76%;
+    radial-gradient(circle, #ffbd54, var(--orange) 48%, #761f04 68%, transparent 69%);
+  height: 280px;
+  left: 78%;
   opacity: 0.9;
   position: absolute;
-  top: 44px;
+  top: 32px;
   transform: translateX(-50%);
-  width: 250px;
+  width: 280px;
+  z-index: 1;
 }
 
 .mountains {
@@ -174,6 +179,8 @@ a {
   left: 0;
   position: absolute;
   right: 0;
+  opacity: 0.45;
+  z-index: 1;
 }
 
 .grid-floor {
@@ -188,6 +195,7 @@ a {
   right: -10%;
   transform: perspective(450px) rotateX(62deg);
   transform-origin: bottom;
+  z-index: 4;
 }
 
 .scanlines {
@@ -359,6 +367,9 @@ a {
 .cam-icon::before { background: #050505; border: 3px solid var(--green); content: ""; height: 20px; width: 28px; }
 .rank-icon::before { color: var(--orange); content: "^"; font-family: "Press Start 2P", monospace; }
 .trash-icon::before { border: 3px solid #d4cec3; border-top-width: 6px; content: ""; height: 22px; width: 22px; }
+.shrine-icon::before { border: 3px solid var(--violet); border-radius: 50%; box-shadow: 0 0 0 4px var(--orange); content: ""; height: 18px; width: 18px; }
+.shrine-icon::after { background: var(--green); content: ""; height: 6px; position: absolute; width: 6px; }
+.abstract-icon::before { background: linear-gradient(135deg, var(--green) 0 33%, var(--violet) 33% 66%, var(--orange) 66%); content: ""; height: 25px; width: 29px; }
 
 .cartridge-icon {
   background: linear-gradient(180deg, #27130b 0 18%, var(--green) 18% 33%, #161616 33% 100%);
@@ -370,6 +381,22 @@ a {
   content: "";
   height: 16px;
   width: 24px;
+}
+
+.highway-icon {
+  background:
+    linear-gradient(180deg, #100018 0 42%, #ff5c00 42% 48%, #070707 48% 100%);
+}
+
+.highway-icon::before {
+  background:
+    linear-gradient(90deg, transparent 0 30%, #fff 30% 42%, transparent 42% 58%, #fff 58% 70%, transparent 70%),
+    #252525;
+  box-shadow: 0 -9px 0 -4px var(--violet), 0 9px 0 -4px var(--green);
+  content: "";
+  height: 18px;
+  transform: perspective(26px) rotateX(35deg);
+  width: 32px;
 }
 
 .window {
@@ -401,6 +428,11 @@ a {
 
 .window.wide {
   width: min(790px, calc(100vw - 32px));
+}
+
+#highway-window {
+  min-width: 0;
+  width: 700px;
 }
 
 .window.maxed {
@@ -470,6 +502,19 @@ a {
   width: min(655px, calc(100vw - 32px));
 }
 
+.initial-welcome {
+  left: clamp(520px, 38vw, 720px);
+  top: 26px;
+  z-index: 60;
+}
+
+.initial-game {
+  left: clamp(210px, 20vw, 360px);
+  top: 350px;
+  width: 700px;
+  z-index: 35;
+}
+
 .welcome-content {
   align-items: center;
   display: grid;
@@ -510,6 +555,15 @@ h3 {
 h1 { font-size: 24px; }
 h2 { font-size: 16px; }
 h3 { font-size: 12px; }
+
+.shrine-content h2,
+.secret-content h2,
+.prophecy-content h2 {
+  font-family: "Jacquard 12", "Press Start 2P", monospace;
+  font-size: 42px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
 
 p {
   font-size: 18px;
@@ -692,6 +746,137 @@ p {
 .game-card p {
   flex: 1;
   font-size: 15px;
+}
+
+.game-embed {
+  background: #050505;
+  height: 425px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.game-embed iframe {
+  border: 0;
+  display: block;
+  height: 500px;
+  pointer-events: none;
+  transform: scale(0.85);
+  transform-origin: top left;
+  width: 800px;
+}
+
+.window.focused .game-embed iframe {
+  pointer-events: auto;
+}
+
+.game-focus-catcher {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  inset: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.window.focused .game-focus-catcher {
+  pointer-events: none;
+}
+
+.window.maxed .game-embed {
+  height: calc(100vh - 120px);
+}
+
+.window.maxed .game-embed iframe {
+  height: 100%;
+  transform: none;
+  width: 100%;
+}
+
+.shrine-content {
+  align-items: center;
+  background:
+    radial-gradient(circle at 26% 50%, rgba(140, 92, 255, 0.34), transparent 28%),
+    linear-gradient(135deg, #120415, #21091b 50%, #090204);
+  color: var(--cream);
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 210px 1fr;
+}
+
+.shrine-eye {
+  align-items: center;
+  background:
+    radial-gradient(circle, #fff6df 0 18%, var(--orange) 19% 34%, #5b145e 35% 58%, transparent 59%);
+  border: 4px solid var(--cream);
+  box-shadow: 0 0 0 5px #160515, 0 0 42px rgba(140, 92, 255, 0.7);
+  display: flex;
+  height: 190px;
+  justify-content: center;
+  justify-self: center;
+  position: relative;
+  width: 190px;
+}
+
+.shrine-eye span {
+  background: #050105;
+  border: 3px solid var(--green);
+  border-radius: 50%;
+  height: 52px;
+  width: 52px;
+}
+
+.ritual-label {
+  color: var(--green);
+  font-family: "Press Start 2P", monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.shrine-offerings {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 18px 0;
+}
+
+.shrine-offerings button {
+  background: #1c0a24;
+  border: 2px solid var(--violet);
+  box-shadow: 3px 3px 0 var(--orange);
+  color: var(--cream);
+  cursor: pointer;
+  padding: 10px;
+}
+
+.shrine-offerings button:hover {
+  background: var(--violet);
+}
+
+.abstract-map {
+  background: linear-gradient(135deg, #fff9eb, #e9fff3);
+}
+
+.map-lanes {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.map-lanes article {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid #141414;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.16);
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.map-lanes strong {
+  color: var(--orange-2);
+  font-family: "Press Start 2P", monospace;
+  font-size: 12px;
 }
 
 details {
@@ -1020,14 +1205,25 @@ summary {
 }
 
 .cursed {
-  --orange: #ff344e;
-  --orange-2: #9b1024;
+  --orange: #d935ff;
+  --orange-2: #7a1fa2;
   --green: #ffef5a;
   --cyan: #ff95ff;
+  --violet: #9f25b4;
 }
 
 .cursed .desktop-wallpaper {
-  background: linear-gradient(180deg, #0e0209 0%, #250310 54%, #320404 100%);
+  background:
+    radial-gradient(circle at 70% 20%, rgba(159, 37, 180, 0.48), transparent 24%),
+    linear-gradient(180deg, #0d0213 0%, #21052d 54%, #16010c 100%);
+}
+
+.cursed .title-bar {
+  background: linear-gradient(90deg, #4e0d6c, #d935ff, #390629);
+}
+
+.cursed .shrine-window {
+  box-shadow: 0 0 0 2px #4f473d, 14px 14px 0 var(--shadow), 0 0 46px rgba(217, 53, 255, 0.55);
 }
 
 @keyframes bootPulse {
@@ -1094,6 +1290,30 @@ summary {
     width: calc(100vw - 16px);
   }
 
+  .initial-welcome {
+    left: 8px !important;
+    top: 92px !important;
+  }
+
+  .initial-game {
+    height: 460px;
+    left: 8px !important;
+    min-height: 360px;
+    top: 590px !important;
+    width: calc(100vw - 16px);
+  }
+
+  .initial-game .game-embed {
+    height: min(62.5vw, 420px);
+    min-height: 280px;
+  }
+
+  .initial-game .game-embed iframe {
+    height: 100%;
+    transform: none;
+    width: 100%;
+  }
+
   .window.maxed {
     height: auto !important;
     left: 8px !important;
@@ -1112,8 +1332,14 @@ summary {
 
   .gallery-grid,
   .social-grid,
-  .game-grid {
+  .game-grid,
+  .map-lanes,
+  .shrine-offerings {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .shrine-content {
+    grid-template-columns: 1fr;
   }
 
   h1 {
@@ -1136,13 +1362,30 @@ summary {
     top: 520px !important;
   }
 
+  .initial-welcome {
+    top: 180px !important;
+  }
+
+  .initial-game {
+    height: 420px;
+    min-height: 360px;
+    top: 690px !important;
+  }
+
+  .initial-game .game-embed {
+    height: 300px;
+  }
+
   .gallery-grid,
   .social-grid,
-  .game-grid {
+  .game-grid,
+  .map-lanes,
+  .shrine-offerings {
     grid-template-columns: 1fr;
   }
 
   .sun {
     left: 70%;
   }
+
 }

@@ -164,6 +164,9 @@ function focusWindow(windowEl) {
   windowEl.classList.add("focused");
   topZ += 1;
   windowEl.style.zIndex = String(topZ);
+  if (highwayFrame) {
+    highwayFrame.style.pointerEvents = windowEl.id === "highway-window" ? "auto" : "none";
+  }
   if (gameFocusCatcher) {
     gameFocusCatcher.style.pointerEvents = windowEl.id === "highway-window" ? "none" : "auto";
   }
@@ -196,6 +199,7 @@ function placeStartupWindows() {
   highwayWindow.style.left = `${Math.round(gameLeft)}px`;
   highwayWindow.style.top = "350px";
   highwayWindow.style.zIndex = "45";
+  if (highwayFrame) highwayFrame.style.pointerEvents = "none";
   if (gameFocusCatcher) gameFocusCatcher.style.pointerEvents = "auto";
   topZ = Math.max(topZ, 100);
 }
