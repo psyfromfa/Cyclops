@@ -136,71 +136,135 @@ a {
 
 .desktop-wallpaper {
   background:
-    radial-gradient(circle at 72% 18%, rgba(255, 118, 13, 0.24), transparent 18%),
-    radial-gradient(circle at 18% 18%, rgba(97, 247, 255, 0.14), transparent 20%),
-    linear-gradient(180deg, #03050d 0%, #090515 36%, #19071b 62%, #090207 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.28)),
+    url("assets/neon-highway-bg.jfif") center / cover no-repeat,
+    #030207;
   inset: 0;
   overflow: hidden;
   position: absolute;
 }
 
-.aurora {
-  animation: drift 11s steps(18) infinite alternate;
+.desktop-wallpaper::before {
+  content: "";
+  display: none;
+}
+
+.desktop-wallpaper::after {
+  animation: grainShift 160ms steps(2) infinite;
   background:
-    radial-gradient(circle at 20% 28%, rgba(97, 247, 255, 0.22), transparent 23%),
-    radial-gradient(circle at 78% 22%, rgba(255, 118, 13, 0.32), transparent 28%),
-    radial-gradient(circle at 58% 58%, rgba(140, 92, 255, 0.17), transparent 24%);
-  filter: blur(10px);
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 3px),
+    radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 4px),
+    repeating-radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 5px);
+  background-size: 92px 88px, 130px 110px, 170px 170px;
+  content: "";
+  inset: -10%;
+  mix-blend-mode: screen;
+  opacity: 0.42;
+  pointer-events: none;
+  position: absolute;
+  z-index: 91;
+}
+
+.aurora {
+  animation: neonPulse 5.5s ease-in-out infinite alternate;
+  background:
+    radial-gradient(ellipse at 50% 41%, rgba(42, 64, 255, 0.54), transparent 24%),
+    radial-gradient(ellipse at 47% 31%, rgba(76, 220, 255, 0.26), transparent 19%),
+    radial-gradient(ellipse at 56% 30%, rgba(168, 118, 255, 0.34), transparent 21%);
+  filter: blur(18px);
   inset: -12%;
   position: absolute;
+  z-index: 1;
+}
+
+.aurora,
+.sun,
+.mountains,
+.grid-floor {
+  display: none;
 }
 
 .sun {
   background:
-    linear-gradient(transparent 0 12%, rgba(8, 3, 4, 0.88) 12% 17%, transparent 17% 28%, rgba(8, 3, 4, 0.88) 28% 33%, transparent 33% 47%, rgba(8, 3, 4, 0.88) 47% 53%, transparent 53%),
-    radial-gradient(circle, #ffbd54, var(--orange) 48%, #761f04 68%, transparent 69%);
+    radial-gradient(ellipse at 50% 74%, rgba(42, 52, 255, 0.56), transparent 40%),
+    radial-gradient(ellipse at 50% 88%, rgba(20, 220, 255, 0.38), transparent 34%),
+    linear-gradient(180deg, rgba(4, 5, 18, 0), rgba(2, 2, 9, 0.74) 72%);
+  bottom: 36vh;
   height: 280px;
-  left: 78%;
-  opacity: 0.9;
+  left: 50%;
+  opacity: 0.95;
   position: absolute;
-  top: 32px;
   transform: translateX(-50%);
-  width: 280px;
+  width: min(980px, 76vw);
   z-index: 1;
 }
 
 .mountains {
   background:
-    linear-gradient(135deg, transparent 0 48%, #090304 49% 100%) 0 100% / 32% 48% no-repeat,
-    linear-gradient(225deg, transparent 0 48%, #110505 49% 100%) 28% 100% / 40% 58% no-repeat,
-    linear-gradient(135deg, transparent 0 48%, #070203 49% 100%) 62% 100% / 36% 45% no-repeat;
-  bottom: 34vh;
-  height: 150px;
-  left: 0;
+    linear-gradient(180deg, rgba(92, 112, 255, 0.42), rgba(13, 16, 48, 0.88)) 8% 76% / 58px 150px no-repeat,
+    linear-gradient(180deg, rgba(48, 221, 255, 0.48), rgba(13, 16, 48, 0.9)) 16% 62% / 72px 220px no-repeat,
+    linear-gradient(180deg, rgba(117, 91, 255, 0.48), rgba(13, 16, 48, 0.92)) 26% 70% / 62px 180px no-repeat,
+    linear-gradient(180deg, rgba(84, 139, 255, 0.56), rgba(13, 16, 48, 0.94)) 38% 54% / 96px 260px no-repeat,
+    linear-gradient(180deg, rgba(148, 108, 255, 0.46), rgba(13, 16, 48, 0.92)) 52% 64% / 76px 210px no-repeat,
+    linear-gradient(180deg, rgba(46, 230, 255, 0.5), rgba(13, 16, 48, 0.92)) 64% 58% / 92px 240px no-repeat,
+    linear-gradient(180deg, rgba(96, 136, 255, 0.4), rgba(13, 16, 48, 0.9)) 75% 72% / 68px 168px no-repeat,
+    linear-gradient(180deg, rgba(148, 108, 255, 0.44), rgba(13, 16, 48, 0.92)) 86% 62% / 82px 220px no-repeat;
+  bottom: 42vh;
+  filter: blur(3px) saturate(1.25);
+  height: 250px;
+  left: 10%;
+  mask-image: linear-gradient(180deg, transparent, #000 10%, #000 82%, transparent);
+  opacity: 0.58;
   position: absolute;
-  right: 0;
-  opacity: 0.45;
+  right: 10%;
   z-index: 1;
 }
 
 .grid-floor {
   background:
-    linear-gradient(rgba(255, 118, 13, 0.38) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(97, 247, 255, 0.16) 1px, transparent 1px);
-  background-size: 100% 44px, 58px 100%;
-  bottom: 36px;
-  height: 48vh;
-  left: -10%;
+    linear-gradient(90deg, transparent 0 42%, rgba(230, 244, 255, 0.32) 42.4% 42.9%, transparent 43.8% 56.2%, rgba(230, 244, 255, 0.32) 57.1% 57.6%, transparent 58%),
+    linear-gradient(90deg, rgba(1, 1, 8, 0.08), rgba(3, 3, 12, 0.98) 28%, #010106 50%, rgba(3, 3, 12, 0.98) 72%, rgba(1, 1, 8, 0.08)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 7px);
+  border-left: 2px solid rgba(40, 226, 255, 0.34);
+  border-right: 2px solid rgba(40, 226, 255, 0.34);
+  bottom: 34px;
+  clip-path: polygon(47% 0, 53% 0, 88% 100%, 12% 100%);
+  height: 51vh;
+  left: 50%;
+  overflow: hidden;
   position: absolute;
-  right: -10%;
-  transform: perspective(450px) rotateX(62deg);
+  transform: translateX(-50%);
   transform-origin: bottom;
+  width: min(1280px, 88vw);
   z-index: 4;
 }
 
-.scanlines {
-  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 4px);
+.grid-floor::before,
+.grid-floor::after {
+  animation: highwayFlow 1.35s linear infinite;
+  background:
+    radial-gradient(ellipse, rgba(255, 255, 255, 0.95), rgba(93, 212, 255, 0.8) 38%, transparent 72%) 35% 0 / 36px 18px,
+    radial-gradient(ellipse, rgba(255, 255, 255, 0.95), rgba(93, 212, 255, 0.8) 38%, transparent 72%) 65% 0 / 36px 18px;
+  background-repeat: repeat-y;
+  content: "";
+  filter: blur(1.2px);
   inset: 0;
+  position: absolute;
+}
+
+.grid-floor::after {
+  animation-duration: 2s;
+  background-position: 25% 72px, 75% 72px;
+  opacity: 0.32;
+}
+
+.scanlines {
+  background:
+    linear-gradient(90deg, rgba(255, 0, 80, 0.04), transparent 22%, transparent 78%, rgba(0, 255, 255, 0.04)),
+    radial-gradient(ellipse at center, transparent 44%, rgba(0, 0, 0, 0.34) 100%),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.038) 0 1px, transparent 1px 4px);
+  inset: 0;
+  mix-blend-mode: screen;
   pointer-events: none;
   position: absolute;
   z-index: 90;
@@ -1196,7 +1260,7 @@ summary {
 }
 
 .pressure-high .sun {
-  filter: saturate(1.4) contrast(1.15);
+  filter: saturate(1.4) contrast(1.15) blur(1px);
 }
 
 .night {
@@ -1209,7 +1273,10 @@ summary {
 }
 
 .night .desktop-wallpaper {
-  background: linear-gradient(180deg, #01030a 0%, #061224 54%, #09220f 100%);
+  background:
+    linear-gradient(180deg, rgba(0, 20, 10, 0.2), rgba(0, 0, 0, 0.36)),
+    url("assets/neon-highway-bg.jfif") center / cover no-repeat,
+    #030207;
 }
 
 .cursed {
@@ -1222,8 +1289,9 @@ summary {
 
 .cursed .desktop-wallpaper {
   background:
-    radial-gradient(circle at 70% 20%, rgba(159, 37, 180, 0.48), transparent 24%),
-    linear-gradient(180deg, #0d0213 0%, #21052d 54%, #16010c 100%);
+    linear-gradient(180deg, rgba(62, 0, 78, 0.28), rgba(0, 0, 0, 0.42)),
+    url("assets/neon-highway-bg.jfif") center / cover no-repeat,
+    #16010c;
 }
 
 .cursed .title-bar {
@@ -1240,6 +1308,23 @@ summary {
 
 @keyframes drift {
   to { transform: translate3d(-22px, 16px, 0) scale(1.04); }
+}
+
+@keyframes highwayFlow {
+  to { background-position: 35% 162px, 65% 162px; }
+}
+
+@keyframes grainShift {
+  0% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(-2%, 1%, 0); }
+  50% { transform: translate3d(1%, -2%, 0); }
+  75% { transform: translate3d(2%, 2%, 0); }
+  100% { transform: translate3d(-1%, 0, 0); }
+}
+
+@keyframes neonPulse {
+  from { opacity: 0.72; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.03); }
 }
 
 @keyframes windowIn {
