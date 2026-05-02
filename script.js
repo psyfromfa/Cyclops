@@ -2,6 +2,7 @@ const bootLines = [
   "Scanning Dith's garden...",
   "One-eyed lifeform detected.",
   "Mounting /cult/memes...",
+  "Blessing Abstract game cartridges...",
   "Loading Abstract Chain adapters...",
   "Sharpening claws...",
   "Installing zero_fcks.dll...",
@@ -38,6 +39,9 @@ const enhanceGarden = document.getElementById("enhance-garden");
 const tapGlass = document.getElementById("tap-glass");
 const rankName = document.getElementById("rank-name");
 const rankDetail = document.getElementById("rank-detail");
+const shrineResult = document.getElementById("shrine-result");
+const highwayFrame = document.getElementById("highway-frame");
+const gameFocusCatcher = document.querySelector(".game-focus-catcher");
 
 let topZ = 60;
 let bootIndex = 0;
@@ -51,12 +55,20 @@ const prophecies = [
   "The chart will move right.",
   "Never trust a two-eyed analyst.",
   "A wallet approaches with questionable intent.",
+  "A new Abstract game asks for the cat. The cat asks for tribute.",
   "The bowl is empty because destiny is underfunded.",
   "Someone will say alpha and provide none.",
   "The garden remembers your cursor path.",
   "Buy button energy detected. Proceed with snacks.",
   "A hidden file is staring back."
 ];
+
+const shrineResults = {
+  treat: "Treat accepted. Cyclops grants +1 community morale.",
+  cartridge: "Cartridge blessed. Insert into any Abstract game and pretend this was planned.",
+  relic: "Relic attuned. If Cyclops cannot be playable, the item will do the haunting.",
+  degen: "Degen energy detected. Strategy quality questionable. Vibes immaculate."
+};
 
 const treatReactions = [
   "Cyclops accepts without making eye contact.",
@@ -155,9 +167,41 @@ function focusWindow(windowEl) {
   renderTaskTabs();
 }
 
+function placeStartupWindows() {
+  const welcomeWindow = document.getElementById("welcome-window");
+  const highwayWindow = document.getElementById("highway-window");
+  if (!welcomeWindow || !highwayWindow) return;
+
+  if (window.innerWidth <= 860) {
+    welcomeWindow.style.left = "";
+    welcomeWindow.style.top = "";
+    welcomeWindow.style.zIndex = "";
+    highwayWindow.style.left = "";
+    highwayWindow.style.top = "";
+    highwayWindow.style.zIndex = "";
+    return;
+  }
+
+  const welcomeLeft = Math.min(Math.max(window.innerWidth * 0.38, 520), 720);
+  const gameLeft = Math.min(Math.max(window.innerWidth * 0.2, 210), 360);
+
+  welcomeWindow.style.left = `${Math.round(welcomeLeft)}px`;
+  welcomeWindow.style.top = "26px";
+  welcomeWindow.style.zIndex = "80";
+  welcomeWindow.classList.add("focused");
+
+  highwayWindow.style.left = `${Math.round(gameLeft)}px`;
+  highwayWindow.style.top = "350px";
+  highwayWindow.style.zIndex = "45";
+}
+
 function openWindow(id) {
   const windowEl = document.getElementById(id);
   if (!windowEl) return;
+
+  if (id === "highway-window" && highwayFrame && highwayFrame.src === "about:blank") {
+    highwayFrame.src = highwayFrame.dataset.src;
+  }
 
   windowEl.classList.add("active");
   focusWindow(windowEl);
@@ -171,6 +215,9 @@ function openWindow(id) {
 
 function closeWindow(windowEl) {
   windowEl.classList.remove("active", "focused", "minimized", "maxed");
+  if (windowEl.id === "highway-window" && highwayFrame) {
+    highwayFrame.src = "about:blank";
+  }
   renderTaskTabs();
   chirp();
 }
@@ -294,12 +341,15 @@ function runTerminalCommand(command) {
   appendTerminal(`C:\\Cyclops\\Cult> ${command}`);
 
   if (normalized === "help") {
-    appendTerminal("Commands: help, games, vision, treat, lore, buy, summon, secret, clear");
+    appendTerminal("Commands: help, games, shrine, vision, treat, lore, buy, summon, secret, clear");
   } else if (normalized === "games") {
     appendTerminal("Opening Cyclops Arcade...");
     openWindow("games-window");
+  } else if (normalized === "shrine") {
+    appendTerminal("Opening Eye Shrine...");
+    openWindow("shrine-window");
   } else if (normalized === "vision") {
-    appendTerminal("The eye sees games, memes, chart candles, and a suspicious hidden file.");
+    appendTerminal("The eye sees Abstract games, meme raids, chart candles, and one suspicious cartridge.");
   } else if (normalized === "treat") {
     addTreat();
     raisePressure(1, "Terminal offering logged.");
@@ -367,7 +417,18 @@ document.querySelectorAll(".game-card button").forEach((button) => {
     openedGameSlots += 1;
     raisePressure(1, "Arcade cartridge inspected.");
     if (openedGameSlots >= 4) unlockScores();
-    showToast("Game slot ready. Replace this with your game link or embed.");
+    showToast("Cyclops integration slot marked. Replace this with a real game link or embed.");
+  });
+});
+
+document.querySelectorAll("[data-offering]").forEach((offering) => {
+  offering.addEventListener("click", () => {
+    const type = offering.dataset.offering;
+    shrineResult.textContent = shrineResults[type] || "The shrine accepts, but refuses to elaborate.";
+    if (type === "treat") addTreat();
+    if (type === "cartridge") openedGameSlots += 1;
+    if (openedGameSlots >= 4) unlockScores();
+    raisePressure(type === "degen" ? 3 : 2, "Shrine offering recorded.");
   });
 });
 
@@ -384,6 +445,10 @@ document.querySelectorAll("[data-trash]").forEach((file) => {
     showToast(trashMessages[name] || "The trash refuses to explain itself.");
     raisePressure(1, "Trash file inspected.");
   });
+});
+
+gameFocusCatcher.addEventListener("click", () => {
+  openWindow("highway-window");
 });
 
 startButton.addEventListener("click", () => {
@@ -469,4 +534,5 @@ window.setTimeout(() => {
 typeBoot();
 updateClock();
 window.setInterval(updateClock, 1000);
+placeStartupWindows();
 renderTaskTabs();
