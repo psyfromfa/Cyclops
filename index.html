@@ -117,7 +117,12 @@
         </button>
       </section>
 
-      <section class="window active focused hero-window initial-welcome" id="welcome-window" aria-label="Welcome window">
+      <section
+        class="window active focused hero-window initial-welcome"
+        id="welcome-window"
+        aria-label="Welcome window"
+        style="left:clamp(520px,38vw,720px);top:26px;z-index:80;width:min(655px,calc(100vw - 32px));"
+      >
         <div class="title-bar">
           <span>Welcome to CyclopsOS</span>
           <div class="window-actions">
@@ -268,7 +273,7 @@
         class="window wide games-window active initial-game"
         id="highway-window"
         aria-label="Highway Havoc game window"
-        style="min-width:0;width:700px;"
+        style="left:clamp(210px,20vw,360px);top:350px;z-index:45;min-width:0;width:700px;"
       >
         <div class="title-bar"><span>CYCLOPS: Highway Havoc</span><div class="window-actions"><button type="button" class="max-window" aria-label="Maximize Highway Havoc window">[]</button><button type="button" class="min-window" aria-label="Minimize Highway Havoc window">_</button><button type="button" class="close-window" aria-label="Close Highway Havoc window">x</button></div></div>
         <div class="menu-bar">Cartridge&nbsp;&nbsp; Score&nbsp;&nbsp; Degen&nbsp;&nbsp; Fullscreen</div>
