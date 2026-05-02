@@ -267,8 +267,17 @@
       <section class="window wide games-window active initial-game" id="highway-window" aria-label="Highway Havoc game window">
         <div class="title-bar"><span>CYCLOPS: Highway Havoc</span><div class="window-actions"><button type="button" class="max-window" aria-label="Maximize Highway Havoc window">[]</button><button type="button" class="min-window" aria-label="Minimize Highway Havoc window">_</button><button type="button" class="close-window" aria-label="Close Highway Havoc window">x</button></div></div>
         <div class="menu-bar">Cartridge&nbsp;&nbsp; Score&nbsp;&nbsp; Degen&nbsp;&nbsp; Fullscreen</div>
-        <div class="window-content game-embed">
-          <iframe id="highway-frame" src="games/highway-havoc.html" data-src="games/highway-havoc.html" title="CYCLOPS: Highway Havoc"></iframe>
+        <div class="window-content game-embed" style="background:#050505;height:425px;overflow:hidden;padding:0;position:relative;">
+          <iframe
+            id="highway-frame"
+            src="games/highway-havoc.html"
+            data-src="games/highway-havoc.html"
+            title="CYCLOPS: Highway Havoc"
+            width="800"
+            height="500"
+            scrolling="no"
+            style="border:0;display:block;height:500px;transform:scale(0.85);transform-origin:top left;width:800px;"
+          ></iframe>
           <button class="game-focus-catcher" type="button" aria-label="Focus Highway Havoc game"></button>
         </div>
       </section>
