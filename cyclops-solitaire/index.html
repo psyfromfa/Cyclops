@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#22a9e8">
+  <title>Cyclops Solitaire</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/cyclops-solitaire/suits/suit-visor.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="game-topbar" aria-label="Game controls">
+      <div class="brand-lockup brand-logo-slot" aria-label="Cyclops: Solitaire Showdown!"></div>
+
+      <div class="score-strip">
+        <span id="moves">0 moves</span>
+        <span id="timer">00:00</span>
+        <span id="status">visor mode: draw three</span>
+      </div>
+
+      <div class="controls">
+        <button id="new-game" type="button">NEW RUN</button>
+        <button id="how-to-play" type="button">RULES</button>
+        <button id="leaderboard-open" type="button">RANKS</button>
+        <button id="undo-move" type="button">UNDO</button>
+      </div>
+    </section>
+
+    <section class="hero-strip" aria-label="Cyclops mascot">
+      <img class="hero-cat" src="../assets/cyclops-solitaire/mascot/cyclops-idle.png" alt="">
+      <div id="cat-bubble" class="cat-bubble" aria-live="polite"></div>
+    </section>
+
+    <section class="board-wrap">
+      <div id="board" class="board" aria-label="Cyclops solitaire board">
+        <div class="top-row">
+          <div id="stock" class="pile stock" role="button" tabindex="0" aria-label="Stock pile"></div>
+          <div id="waste" class="pile waste" aria-label="Waste pile"></div>
+          <div class="logo-stage" aria-label="Game logo">
+            <img class="logo-image" src="../assets/cyclops-solitaire/logos/CyclopsTitle-transparent.png" alt="Cyclops: Solitaire Showdown!">
+          </div>
+          <div id="foundations" class="foundations" aria-label="Foundation piles"></div>
+        </div>
+        <div id="tableau" class="tableau" aria-label="Tableau piles"></div>
+      </div>
+    </section>
+
+    <div id="win-modal" class="choice-modal win-modal" hidden>
+      <div class="mode-card win-card" role="dialog" aria-modal="true" aria-labelledby="win-title">
+        <img class="win-mascot" src="../assets/cyclops-solitaire/mascot/cyclops-idle.png" alt="">
+        <h1 id="win-title">Showdown Cleared</h1>
+        <p class="win-mvp">visor victory</p>
+        <p id="win-summary">showdown mode - 0 moves</p>
+        <div id="score-submit" class="score-submit">
+          <p id="score-prompt">drop your X handle or name</p>
+          <form id="score-form" class="score-form">
+            <label for="score-name">X handle or name</label>
+            <div class="score-row">
+              <input id="score-name" name="name" type="text" maxlength="24" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="@cyclopsdev or name">
+              <button id="score-save" type="submit">SAVE</button>
+            </div>
+          </form>
+          <p id="score-message" class="score-message" aria-live="polite"></p>
+        </div>
+        <div class="modal-actions">
+          <button id="win-leaderboard" type="button">Ranks</button>
+          <button id="play-again" type="button">Play again</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mode-modal" class="choice-modal" hidden>
+      <div class="mode-card" role="dialog" aria-modal="true" aria-labelledby="mode-title">
+        <h1 id="mode-title">new run</h1>
+        <div class="mode-options">
+          <button class="mode-option" type="button" data-mode="easy">
+            <span>warmup</span>
+            <small>draw 1 card</small>
+          </button>
+          <button class="mode-option" type="button" data-mode="hard">
+            <span>showdown</span>
+            <small>draw 3 cards</small>
+          </button>
+        </div>
+        <button id="mode-cancel" class="quiet-button" type="button">BACK TO BOARD</button>
+      </div>
+    </div>
+
+    <div id="how-to-modal" class="choice-modal" hidden>
+      <div class="mode-card how-to-card" role="dialog" aria-modal="true" aria-labelledby="how-to-title">
+        <h1 id="how-to-title">rules</h1>
+        <ul class="how-to-list">
+          <li>Build columns by alternating red and black suits, counting down from King to Ace.</li>
+          <li>Empty columns can only start with a King.</li>
+          <li>Tap the deck to flip new cards.</li>
+          <li>Move Aces to the top-right stacks, then build each Cyclops suit up to King.</li>
+          <li>Double tap a card to send it home when it fits.</li>
+          <li>Use UNDO when the visor read was wrong.</li>
+        </ul>
+        <button id="how-to-close" class="quiet-button" type="button">GOT IT</button>
+      </div>
+    </div>
+
+    <div id="leaderboard-modal" class="choice-modal" hidden>
+      <div class="mode-card leaderboard-card" role="dialog" aria-modal="true" aria-labelledby="leaderboard-title">
+        <h1 id="leaderboard-title">ranks</h1>
+        <p id="leaderboard-status" class="leaderboard-status" aria-live="polite">live ranks</p>
+        <div class="leaderboard-tabs" role="tablist" aria-label="Leaderboard modes">
+          <button class="leaderboard-tab active" type="button" data-leaderboard-mode="easy" role="tab" aria-selected="true" aria-controls="leaderboard-panel-easy">warmup</button>
+          <button class="leaderboard-tab" type="button" data-leaderboard-mode="hard" role="tab" aria-selected="false" aria-controls="leaderboard-panel-hard">showdown</button>
+        </div>
+        <div class="leaderboard-panels">
+          <section id="leaderboard-panel-easy" class="leaderboard-panel" data-leaderboard-panel="easy" role="tabpanel">
+            <h2>warmup mode</h2>
+            <ol id="leaderboard-easy" class="leaderboard-list"></ol>
+          </section>
+          <section id="leaderboard-panel-hard" class="leaderboard-panel" data-leaderboard-panel="hard" role="tabpanel" hidden>
+            <h2>showdown mode</h2>
+            <ol id="leaderboard-hard" class="leaderboard-list"></ol>
+          </section>
+        </div>
+        <button id="leaderboard-close" class="quiet-button" type="button">GOT IT</button>
+      </div>
+    </div>
+
+    <div id="no-move-modal" class="choice-modal" hidden>
+      <div class="mode-card" role="dialog" aria-modal="true" aria-labelledby="no-move-title">
+        <h1 id="no-move-title">board locked</h1>
+        <p class="modal-copy">board's looking cooked</p>
+        <div class="modal-actions">
+          <button id="no-move-new" class="mode-option compact" type="button">NEW RUN</button>
+          <button id="no-move-keep" class="mode-option compact secondary" type="button">KEEP LOOKING</button>
+        </div>
+      </div>
+    </div>
+
+    <audio id="background-music" src="../assets/cyclops-solitaire/audio/A_Single_Horizon.mp3" loop preload="auto"></audio>
+    <div class="audio-dock" aria-label="Audio controls">
+      <button id="music-toggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Play music"></button>
+      <div class="audio-sliders">
+        <label class="audio-slider" for="music-volume">
+          <span>Music</span>
+          <input id="music-volume" type="range" min="0" max="100" value="25">
+        </label>
+        <label class="audio-slider" for="sfx-volume">
+          <span>Sounds</span>
+          <input id="sfx-volume" type="range" min="0" max="100" value="75">
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
