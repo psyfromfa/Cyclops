@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Cyclops visor suit">
+  <defs>
+    <style>
+      .line{stroke:#1b0704;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+  <path class="line" fill="#d41418" d="M20 45c0-7 5-12 12-12h64c7 0 12 5 12 12v35c0 7-5 12-12 12H32c-7 0-12-5-12-12V45Z"/>
+  <path class="line" fill="#8b0b12" d="M18 52 8 61v20l10-8V52Zm92 0 10 9v20l-10-8V52Z"/>
+  <path class="line" fill="#ff2637" d="M33 51h62v25H33z"/>
+  <path fill="#ff8aa2" d="M41 59h45v7H41z"/>
+</svg>
