@@ -41,7 +41,8 @@ const rankName = document.getElementById("rank-name");
 const rankDetail = document.getElementById("rank-detail");
 const shrineResult = document.getElementById("shrine-result");
 const highwayFrame = document.getElementById("highway-frame");
-const gameFocusCatcher = document.querySelector(".game-focus-catcher");
+const gameFrames = [...document.querySelectorAll(".game-frame")];
+const gameFocusCatchers = [...document.querySelectorAll(".game-focus-catcher")];
 
 let topZ = 100;
 let bootIndex = 0;
@@ -164,12 +165,12 @@ function focusWindow(windowEl) {
   windowEl.classList.add("focused");
   topZ += 1;
   windowEl.style.zIndex = String(topZ);
-  if (highwayFrame) {
-    highwayFrame.style.pointerEvents = windowEl.id === "highway-window" ? "auto" : "none";
-  }
-  if (gameFocusCatcher) {
-    gameFocusCatcher.style.pointerEvents = windowEl.id === "highway-window" ? "none" : "auto";
-  }
+  gameFrames.forEach((frame) => {
+    frame.style.pointerEvents = frame.closest(".window") === windowEl ? "auto" : "none";
+  });
+  gameFocusCatchers.forEach((catcher) => {
+    catcher.style.pointerEvents = catcher.closest(".window") === windowEl ? "none" : "auto";
+  });
   renderTaskTabs();
 }
 
@@ -200,7 +201,9 @@ function placeStartupWindows() {
   highwayWindow.style.top = "350px";
   highwayWindow.style.zIndex = "45";
   if (highwayFrame) highwayFrame.style.pointerEvents = "none";
-  if (gameFocusCatcher) gameFocusCatcher.style.pointerEvents = "auto";
+  gameFocusCatchers.forEach((catcher) => {
+    catcher.style.pointerEvents = "auto";
+  });
   topZ = Math.max(topZ, 100);
 }
 
@@ -208,12 +211,14 @@ function openWindow(id) {
   const windowEl = document.getElementById(id);
   if (!windowEl) return;
 
-  if (id === "highway-window" && highwayFrame && highwayFrame.src === "about:blank") {
-    highwayFrame.src = highwayFrame.dataset.src;
+  const gameFrame = windowEl.querySelector(".game-frame[data-src]");
+  if (gameFrame && gameFrame.src === "about:blank") {
+    gameFrame.src = gameFrame.dataset.src;
   }
 
   windowEl.classList.add("active");
   focusWindow(windowEl);
+  startEmbeddedGameAudio(windowEl);
   chirp();
   raisePressure(id === "forbidden-window" ? 2 : 1, `${windowEl.querySelector(".title-bar span")?.textContent || "Window"} opened.`);
 
@@ -224,11 +229,29 @@ function openWindow(id) {
 
 function closeWindow(windowEl) {
   windowEl.classList.remove("active", "focused", "minimized", "maxed");
-  if (windowEl.id === "highway-window" && highwayFrame) {
-    highwayFrame.src = "about:blank";
+  const gameFrame = windowEl.querySelector(".game-frame[data-src]");
+  if (gameFrame?.id === "solitaire-frame") {
+    controlEmbeddedGameAudio(windowEl, "pause");
+  } else if (gameFrame) {
+    gameFrame.src = "about:blank";
   }
   renderTaskTabs();
   chirp();
+}
+
+function controlEmbeddedGameAudio(windowEl, action) {
+  const frame = windowEl.querySelector("#solitaire-frame");
+  const audioControls = frame?.contentWindow?.CyclopsSolitaireAudio;
+  if (!audioControls?.[action]) return false;
+  audioControls[action]();
+  return true;
+}
+
+function startEmbeddedGameAudio(windowEl) {
+  const frame = windowEl.querySelector("#solitaire-frame");
+  if (!frame) return;
+  if (controlEmbeddedGameAudio(windowEl, "start")) return;
+  frame.addEventListener("load", () => controlEmbeddedGameAudio(windowEl, "start"), { once: true });
 }
 
 function minimizeWindow(windowEl) {
@@ -461,7 +484,8 @@ document.querySelectorAll(".game-card button").forEach((button) => {
     openedGameSlots += 1;
     raisePressure(1, "Arcade cartridge inspected.");
     if (openedGameSlots >= 4) unlockScores();
-    showToast("Cyclops integration slot marked. Replace this with a real game link or embed.");
+    const title = button.closest(".game-card")?.querySelector("h3")?.textContent || "Arcade cartridge";
+    showToast(`${title} launched.`);
   });
 });
 
@@ -491,10 +515,13 @@ document.querySelectorAll("[data-trash]").forEach((file) => {
   });
 });
 
-gameFocusCatcher?.addEventListener("click", (event) => {
-  event.preventDefault();
-  event.stopPropagation();
-  openWindow("highway-window");
+gameFocusCatchers.forEach((catcher) => {
+  catcher.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const windowEl = catcher.closest(".window");
+    if (windowEl) openWindow(windowEl.id);
+  });
 });
 
 startButton.addEventListener("click", () => {
