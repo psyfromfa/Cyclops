@@ -743,12 +743,12 @@ function getCardHeight() {
 
 function getFaceGap() {
   const preferred = window.innerWidth < 720 ? 28 : Math.max(34, Math.min(46, window.innerWidth * 0.032));
-  const minimum = window.innerWidth < 720 ? 22 : 26;
+  const minimum = window.innerWidth < 720 ? 18 : 18;
   const longestPile = state.tableau.reduce((longest, pile) => Math.max(longest, pile.length), 0);
   if (longestPile <= 1) return preferred;
 
   const tableauTop = els.tableau.getBoundingClientRect().top || (window.innerWidth < 720 ? 260 : 270);
-  const availableHeight = Math.max(getCardHeight(), window.innerHeight - tableauTop - 30);
+  const availableHeight = Math.max(getCardHeight(), window.innerHeight - tableauTop - 12);
   const compressed = (availableHeight - getCardHeight()) / Math.max(1, longestPile - 1);
   return Math.max(minimum, Math.min(preferred, compressed));
 }
@@ -1084,6 +1084,18 @@ function unlockAudio() {
     attemptMusicPlayback();
   }
 }
+
+function startMusicFromParent() {
+  state.musicOn = true;
+  saveAudioSettings();
+  unlockAudio();
+  attemptMusicPlayback();
+}
+
+window.CyclopsSolitaireAudio = {
+  start: startMusicFromParent,
+  pause: pauseMusic
+};
 
 function getAudioContext() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
