@@ -107,6 +107,10 @@
           <span class="icon-tile highway-icon"></span>
           <span>Highway Havoc</span>
         </button>
+        <button class="desktop-icon featured" type="button" data-window="solitaire-window">
+          <span class="icon-tile solitaire-icon"></span>
+          <span>Solitaire</span>
+        </button>
         <button class="desktop-icon hidden-icon" id="secret-icon" type="button" data-window="secret-window">
           <span class="icon-tile secret-icon"></span>
           <span>secret.eye</span>
@@ -213,20 +217,26 @@
               <p>Playable Cyclops chaos. A real integrated cartridge for the Abstract game invasion.</p>
               <button type="button" data-window="highway-window">Play Game</button>
             </article>
-            <article class="game-card">
+            <article class="game-card ready">
               <div class="cart-art">02</div>
+              <h3>Solitaire Showdown</h3>
+              <p>Draw-three solitaire with Cyclops suits, live ranks, chiptune sounds, and one eye on every move.</p>
+              <button type="button" data-window="solitaire-window">Play Game</button>
+            </article>
+            <article class="game-card">
+              <div class="cart-art">03</div>
               <h3>Relic Drop</h3>
               <p>For games that add a Cyclops item: eye patch, treat bowl, cursed cat mask, garden tile.</p>
               <button type="button">Inspect Relic</button>
             </article>
             <article class="game-card">
-              <div class="cart-art">03</div>
+              <div class="cart-art">04</div>
               <h3>Degen Quest</h3>
               <p>Community game nights, score hunts, tournament chaos, and deeply questionable strategies.</p>
               <button type="button">Queue Quest</button>
             </article>
             <article class="game-card">
-              <div class="cart-art">04</div>
+              <div class="cart-art">05</div>
               <h3>Missing Cyclops</h3>
               <p>Games not yet blessed by the eye. The shrine is accepting diplomatic treat offerings.</p>
               <button type="button">Summon Cat</button>
@@ -280,6 +290,7 @@
         <div class="window-content game-embed" style="background:#050505;height:425px;overflow:hidden;padding:0;position:relative;width:680px;">
           <iframe
             id="highway-frame"
+            class="game-frame"
             src="games/highway-havoc.html"
             data-src="games/highway-havoc.html"
             title="CYCLOPS: Highway Havoc"
@@ -293,6 +304,33 @@
             type="button"
             aria-label="Focus Highway Havoc game"
             style="background:transparent;border:0;cursor:pointer;inset:0;padding:0;position:absolute;z-index:20;"
+          ></button>
+        </div>
+      </section>
+
+      <section
+        class="window wide games-window"
+        id="solitaire-window"
+        aria-label="Cyclops Solitaire Showdown game window"
+        style="left:clamp(120px,12vw,260px);top:96px;z-index:42;min-width:0;width:min(1180px,calc(100vw - 48px));"
+      >
+        <div class="title-bar"><span>CYCLOPS: Solitaire Showdown</span><div class="window-actions"><button type="button" class="max-window" aria-label="Maximize Solitaire Showdown window">[]</button><button type="button" class="min-window" aria-label="Minimize Solitaire Showdown window">_</button><button type="button" class="close-window" aria-label="Close Solitaire Showdown window">x</button></div></div>
+        <div class="menu-bar">Cartridge&nbsp;&nbsp; Live Ranks&nbsp;&nbsp; Chiptunes&nbsp;&nbsp; <a href="cyclops-solitaire/" target="_blank" rel="noopener noreferrer">Open Full Tab</a></div>
+        <div class="window-content game-embed solitaire-embed">
+          <iframe
+            id="solitaire-frame"
+            class="game-frame"
+            src="cyclops-solitaire/index.html"
+            data-src="cyclops-solitaire/index.html"
+            title="CYCLOPS: Solitaire Showdown"
+            width="1180"
+            height="660"
+            scrolling="no"
+          ></iframe>
+          <button
+            class="game-focus-catcher"
+            type="button"
+            aria-label="Focus Solitaire Showdown game"
           ></button>
         </div>
       </section>
@@ -449,6 +487,7 @@
         <div class="start-brand"><span class="mini-eye"></span><strong>CyclopsOS</strong></div>
         <button type="button" data-window="welcome-window">Welcome</button>
         <button type="button" data-window="games-window">Cyclops Arcade</button>
+        <button type="button" data-window="solitaire-window">Solitaire Showdown</button>
         <button type="button" data-window="story-window">Origin Story</button>
         <button type="button" data-window="gallery-window">Meme Files</button>
         <button type="button" data-window="terminal-window">Prophecy Terminal</button>
