@@ -1,6 +1,6 @@
 const ASSETS = {
   back: "../assets/cyclops-solitaire/card-backs/card-back-cyclops-gold-rim.png",
-  mascot: "../assets/cyclops-solitaire/mascot/cyclops-idle.png",
+  mascot: "../assets/cyclops-solitaire/mascot/cyclops-idle.png?v=user-mascot-0524",
   suits: {
     visor: "../assets/cyclops-solitaire/suits/polished/suit-visor-polished.png",
     hat: "../assets/cyclops-solitaire/suits/polished/suit-hat-polished.png",
