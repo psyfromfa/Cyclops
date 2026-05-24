@@ -1285,4 +1285,3 @@ window.addEventListener("resize", render);
 
 setupAudioControls();
 resetGame("hard");
-attemptMusicPlayback();
