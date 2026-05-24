@@ -246,6 +246,27 @@ main {
   gap: 18px;
   min-height: 620px;
   padding: clamp(22px, 4vw, 42px);
+  position: relative;
+  overflow: hidden;
+}
+
+.deck-copy > :not(.hero-mascot) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-mascot {
+  filter: drop-shadow(7px 8px 0 rgba(0, 0, 0, 0.42));
+  height: auto;
+  image-rendering: pixelated;
+  max-width: 166px;
+  object-fit: contain;
+  pointer-events: none;
+  position: absolute;
+  right: clamp(20px, 3.6vw, 46px);
+  top: clamp(68px, 8.4vw, 112px);
+  width: clamp(118px, 13vw, 166px);
+  z-index: 0;
 }
 
 .eyebrow {
@@ -472,6 +493,12 @@ p {
   padding: 0 22px 24px;
   position: relative;
   z-index: 1;
+}
+
+.highway-body {
+  grid-template-columns: 1fr;
+  padding-left: 28px;
+  padding-right: 28px;
 }
 
 .mascot {
@@ -860,12 +887,16 @@ p {
   background: #b9b0a4;
   border: 3px solid var(--panel);
   box-shadow: 12px 12px 0 var(--shadow);
-  height: min(840px, calc(100vh - 32px));
+  height: min(860px, calc(100vh - 32px));
+  height: min(860px, calc(100dvh - 32px));
   overflow: hidden;
-  width: min(1240px, calc(100vw - 32px));
+  width: min(1260px, calc(100vw - 32px));
 }
 
 .player-titlebar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   min-height: 44px;
 }
 
@@ -876,7 +907,7 @@ p {
 .player-titlebar div {
   align-items: center;
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .player-titlebar a,
@@ -885,8 +916,22 @@ p {
   border: 2px solid #000;
   color: var(--ink);
   cursor: pointer;
-  padding: 6px 8px;
+  font-size: 18px;
+  line-height: 1;
+  min-height: 32px;
+  min-width: 34px;
+  padding: 4px 8px;
   text-decoration: none;
+}
+
+.player-titlebar .window-control {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+#player-size-toggle {
+  min-width: 56px;
 }
 
 .player-window iframe {
@@ -910,6 +955,35 @@ p {
 
 .player-modal.player-expanded .player-window iframe {
   height: calc(100% - 44px);
+}
+
+.player-minimized-tab {
+  align-items: center;
+  background: #10151c;
+  border: 3px solid var(--gold);
+  bottom: 18px;
+  box-shadow: 5px 5px 0 #000;
+  color: var(--panel);
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  max-width: min(360px, calc(100vw - 36px));
+  padding: 10px 12px;
+  position: fixed;
+  right: 18px;
+  text-align: left;
+  z-index: 86;
+}
+
+.player-minimized-tab span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-minimized-tab strong {
+  color: var(--gold);
+  flex: 0 0 auto;
 }
 
 .toast {
@@ -987,7 +1061,39 @@ p {
   }
 
   .deck-copy {
+    grid-template-columns: 1fr;
     min-height: 0;
+  }
+
+  .deck-copy .eyebrow,
+  .deck-copy .lede,
+  .deck-copy .hero-actions {
+    grid-column: auto;
+  }
+
+  .deck-copy h1 {
+    max-width: none;
+    order: 2;
+  }
+
+  .deck-copy .eyebrow {
+    order: 1;
+  }
+
+  .deck-copy .lede {
+    order: 3;
+  }
+
+  .deck-copy .hero-actions {
+    order: 5;
+  }
+
+  .hero-mascot {
+    justify-self: center;
+    margin: -4px 0 -2px;
+    order: 4;
+    position: static;
+    width: min(126px, 34vw);
   }
 
   .signal-grid,
@@ -1034,17 +1140,17 @@ p {
   }
 
   .player-titlebar {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
     gap: 8px;
   }
 
   .player-window iframe {
-    height: calc(100% - 80px);
+    height: calc(100% - 44px);
   }
 
   .player-modal.player-expanded .player-window iframe {
-    height: calc(100% - 80px);
+    height: calc(100% - 44px);
   }
 }
 
@@ -1079,6 +1185,10 @@ p {
 
   h1 {
     font-size: 24px;
+  }
+
+  .hero-mascot {
+    width: min(104px, 34vw);
   }
 
   h2 {
