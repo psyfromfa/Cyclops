@@ -898,8 +898,30 @@ button {
   }
 
   .top-row {
-    grid-template-columns: var(--card-w) var(--card-w) repeat(4, var(--card-w));
-    justify-content: center;
+    grid-template-columns: var(--card-w) calc(var(--card-w) + 76px) repeat(4, var(--card-w));
+    justify-content: start;
+  }
+
+  .waste {
+    width: calc(var(--card-w) + 76px);
+  }
+
+  .waste .playing-card:nth-child(2) {
+    transform: none;
+  }
+
+  .waste .playing-card:nth-child(3) {
+    transform: none;
+  }
+
+  .waste .playing-card:nth-child(2):not(:disabled):hover,
+  .waste .playing-card:nth-child(3):not(:disabled):hover {
+    transform: translateY(-3px);
+  }
+
+  .waste .playing-card:nth-child(2).selected,
+  .waste .playing-card:nth-child(3).selected {
+    transform: translateY(-9px);
   }
 
   .tableau {
