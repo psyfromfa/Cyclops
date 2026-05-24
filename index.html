@@ -1,156 +1,288 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#22a9e8">
-  <title>Cyclops Solitaire</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/cyclops-solitaire/suits/suit-visor.svg">
-  <link rel="stylesheet" href="./styles.css?v=window-fit-0524">
-</head>
-<body>
-  <main class="app-shell">
-    <section class="game-topbar" aria-label="Game controls">
-      <div class="brand-lockup brand-logo-slot" aria-label="Cyclops: Solitaire Showdown!"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d1018" />
+    <title>Cyclops | Game-Native IP on Abstract</title>
+    <meta name="description" content="Cyclops is a game-native IP on Abstract, fostering a grassroots community of gamers, traders, and builders." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=user-mascot-0524" />
+  </head>
+  <body>
+    <div class="site-bg" aria-hidden="true"></div>
+    <div class="scanline" aria-hidden="true"></div>
 
-      <div class="score-strip">
-        <span id="moves">0 moves</span>
-        <span id="timer">00:00</span>
-        <span id="status">visor mode: draw three</span>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Cyclops home">
+        <img src="assets/SitePng.png" alt="" />
+        <span>
+          <strong>Cyclops</strong>
+          <small>one eye, one vision</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#games">Games</a>
+        <a href="#character">Character</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#links">Links</a>
+      </nav>
+
+      <nav class="social-nav" aria-label="Social links">
+        <a href="https://x.com/CyclopsOnAbs" target="_blank" rel="noopener noreferrer" aria-label="Cyclops on X">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.4 3.5h4.1l4.1 5.7 4.9-5.7h2.5l-6.2 7.2 6.8 9.8h-4.1l-4.5-6.4-5.5 6.4h-2.6l6.9-8-6.4-9zM7.8 5.3l9.7 13.5h1l-9.7-13.5h-1z" />
+          </svg>
+        </a>
+        <a href="https://t.me/Cyclops_Portal" target="_blank" rel="noopener noreferrer" aria-label="Cyclops Telegram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.9 4.2 3.7 10.8c-1.2.5-1.2 1.2-.2 1.5l4.4 1.4 1.7 5.3c.2.7.4.9.8.9.4 0 .6-.2.9-.5l2.1-2 4.3 3.2c.8.4 1.3.2 1.5-.8l2.7-12.8c.3-1.2-.4-1.7-1-1.4zM8.6 13.4l9.8-6.2c.5-.3.9-.1.5.2l-8 7.2-.3 3.1-1.9-4.3z" />
+          </svg>
+        </a>
+        <a href="https://dexscreener.com/abstract/0x0fc6e222f4e27189801909c610ae6172cb69e5a5" target="_blank" rel="noopener noreferrer" aria-label="Cyclops chart on Dexscreener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 19h18v2H1V3h2v16zm3.2-2.5-1.4-1.4 4.6-4.7 3.1 3.1 5.7-7.2H15V4h7v7h-2.3V7.9l-7 8.8-3.2-3.2-3.3 3z" />
+          </svg>
+        </a>
+      </nav>
+
+      <div class="status-pill" aria-label="Arcade status">
+        <span></span>
+        Arcade online
       </div>
+    </header>
 
-      <div class="controls">
-        <button id="new-game" type="button">NEW RUN</button>
-        <button id="how-to-play" type="button">RULES</button>
-        <button id="leaderboard-open" type="button">RANKS</button>
-        <button id="undo-move" type="button">UNDO</button>
-      </div>
-    </section>
+    <main>
+      <section id="home" class="command-deck game-first" aria-labelledby="home-title">
+        <div class="deck-copy">
+          <p class="eyebrow">Game-native IP on Abstract</p>
+          <h1 id="home-title"><span>Cyclops</span> <span>plays</span> <span>anywhere.</span></h1>
+          <img class="hero-mascot" src="assets/cyclops-solitaire/mascot/cyclops-idle.png?v=user-mascot-0524" alt="Cyclops mascot" />
+          <p class="lede">Cyclops is an established gamer-cat brand built for playable moments, crossover drops, score challenges, and a community of Abstract gamers and traders.</p>
 
-    <section class="hero-strip" aria-label="Cyclops mascot">
-      <img class="hero-cat" src="../assets/cyclops-solitaire/mascot/cyclops-idle.png?v=user-mascot-0524" alt="">
-      <div id="cat-bubble" class="cat-bubble" aria-live="polite"></div>
-    </section>
-
-    <section class="board-wrap">
-      <div id="board" class="board" aria-label="Cyclops solitaire board">
-        <div class="top-row">
-          <div id="stock" class="pile stock" role="button" tabindex="0" aria-label="Stock pile"></div>
-          <div id="waste" class="pile waste" aria-label="Waste pile"></div>
-          <div class="logo-stage" aria-label="Game logo">
-            <img class="logo-image" src="../assets/cyclops-solitaire/logos/CyclopsTitle-transparent.png" alt="Cyclops: Solitaire Showdown!">
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#games">Browse Games</a>
           </div>
-          <div id="foundations" class="foundations" aria-label="Foundation piles"></div>
         </div>
-        <div id="tableau" class="tableau" aria-label="Tableau piles"></div>
-      </div>
-    </section>
 
-    <div id="win-modal" class="choice-modal win-modal" hidden>
-      <div class="mode-card win-card" role="dialog" aria-modal="true" aria-labelledby="win-title">
-        <img class="win-mascot" src="../assets/cyclops-solitaire/mascot/cyclops-idle.png?v=user-mascot-0524" alt="">
-        <h1 id="win-title">Showdown Cleared</h1>
-        <p class="win-mvp">visor victory</p>
-        <p id="win-summary">showdown mode - 0 moves</p>
-        <div id="score-submit" class="score-submit">
-          <p id="score-prompt">drop your X handle or name</p>
-          <form id="score-form" class="score-form">
-            <label for="score-name">X handle or name</label>
-            <div class="score-row">
-              <input id="score-name" name="name" type="text" maxlength="24" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="@cyclopsdev or name">
-              <button id="score-save" type="submit">SAVE</button>
+        <aside class="featured-cartridge" aria-label="Featured game">
+          <div class="cartridge-header">
+            <span>Main game</span>
+            <strong>Live now</strong>
+          </div>
+          <div class="title-art highway-title" role="img" aria-label="CYCLOPS: Highway Havoc">
+            <span>CYCLOPS:</span>
+            <strong>Highway Havoc</strong>
+          </div>
+          <div class="cartridge-body highway-body">
+            <div>
+              <h2>Highway Havoc</h2>
+              <p>The flagship arcade drop for Cyclops: fast, loud, playable in-browser, and built to turn the character into something people can compete with, clip, and share.</p>
+              <div class="mini-actions">
+                <button class="button small primary" type="button" data-open-player="games/highway-havoc.html" data-title="CYCLOPS: Highway Havoc">Play Now</button>
+              </div>
+              <ul class="feature-list" aria-label="Highway Havoc features">
+                <li>Main live arcade game</li>
+                <li>Built for score chasing and clips</li>
+                <li>Playable proof of Cyclops IP</li>
+              </ul>
             </div>
-          </form>
-          <p id="score-message" class="score-message" aria-live="polite"></p>
-        </div>
-        <div class="modal-actions">
-          <button id="win-leaderboard" type="button">Ranks</button>
-          <button id="play-again" type="button">Play again</button>
-        </div>
-      </div>
-    </div>
+          </div>
+        </aside>
+      </section>
 
-    <div id="mode-modal" class="choice-modal" hidden>
-      <div class="mode-card" role="dialog" aria-modal="true" aria-labelledby="mode-title">
-        <h1 id="mode-title">new run</h1>
-        <div class="mode-options">
-          <button class="mode-option" type="button" data-mode="easy">
-            <span>warmup</span>
-            <small>draw 1 card</small>
+      <section id="games" class="section-block games-section" aria-labelledby="games-title">
+        <div class="section-heading">
+          <p class="eyebrow">Cyclops Arcade</p>
+          <h2 id="games-title">Games for the community.</h2>
+          <p>Cyclops is building a playable identity across Abstract: arcade drops, score runs, collabs, and assets that other games can plug into.</p>
+        </div>
+
+        <div class="game-grid">
+          <article class="game-card ready featured-game game-highway">
+            <div class="game-card-media" aria-hidden="true">
+              <span class="media-kicker">main game</span>
+              <strong>Highway Havoc</strong>
+            </div>
+            <div class="cart-label">
+              <span>01</span>
+              <strong>Live</strong>
+            </div>
+            <h3>Highway Havoc</h3>
+            <p>The main Cyclops arcade game: a high-energy browser run made for quick sessions.</p>
+            <div class="card-actions">
+              <button class="button small primary" type="button" data-open-player="games/highway-havoc.html" data-title="CYCLOPS: Highway Havoc">Play Now</button>
+            </div>
+          </article>
+
+          <article class="game-card ready game-solitaire">
+            <div class="game-card-media" aria-hidden="true">
+              <img src="assets/cyclops-solitaire/logos/CyclopsTitle-transparent.png" alt="" />
+            </div>
+            <div class="cart-label">
+              <span>02</span>
+              <strong>Live</strong>
+            </div>
+            <h3>Solitaire Showdown</h3>
+            <p>Solitaire with custom Cyclops suits, sounds, music, and a leaderboard.</p>
+            <div class="card-actions">
+              <button class="button small primary" type="button" data-open-player="cyclops-solitaire/index.html?v=window-fit-0524" data-title="Cyclops: Solitaire Showdown">Play Now</button>
+            </div>
+          </article>
+
+          <article class="game-card game-space">
+            <div class="game-card-media" aria-hidden="true">
+              <img src="assets/cyclops-solitaire/suits/polished/suit-abstract-official-green-flat.png" alt="" />
+              <span>Abstract mission</span>
+            </div>
+            <div class="cart-label">
+              <span>03</span>
+              <strong>In dev</strong>
+            </div>
+            <h3>In! Space!</h3>
+            <p>A deeper strategy game for Cyclops items, factions, rival characters, community lore, and longer-form competitive play.</p>
+            <div class="card-actions">
+              <button class="button small disabled" type="button">In production</button>
+            </div>
+          </article>
+
+          <article class="game-card game-clopped">
+            <div class="game-card-media" aria-hidden="true">
+              <img src="assets/SitePng.png" alt="" />
+              <span>side-scroller</span>
+            </div>
+            <div class="cart-label">
+              <span>04</span>
+              <strong>In dev</strong>
+            </div>
+            <h3>Get Clopped!</h3>
+            <p>Cyclops and his friends beat bad guys up!</p>
+            <div class="card-actions">
+              <button class="button small disabled" type="button">In production</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="character" class="section-block split-block" aria-labelledby="character-title">
+        <div class="section-heading">
+          <p class="eyebrow">The character</p>
+          <h2 id="character-title">A recognizable mascot for games, markets, and internet culture.</h2>
+          <p>Cyclops is built to move. The mascot, visor, cap, paw, and one-eyed attitude can show up as a playable hero, collectible item, sticker, emote, card suit, or partner-game asset.</p>
+        </div>
+
+        <div class="ip-board">
+          <img class="ip-mascot" src="assets/SitePng.png" alt="Pixel Cyclops wearing a red visor and cap" />
+          <div class="ip-rules">
+            <article>
+              <span class="rule-number">01</span>
+              <h3>Known Signal</h3>
+              <p>Orange cat. One eye. Red visor. Gamer posture. A clean silhouette that players can recognize fast.</p>
+            </article>
+            <article>
+              <span class="rule-number">02</span>
+              <h3>Game Ready</h3>
+              <p>Cyclops is already positioned around playable drops, score challenges, streamable clips, and community events.</p>
+            </article>
+            <article>
+              <span class="rule-number">03</span>
+              <h3>Crossover Ready</h3>
+              <p>The visor, cap, paw, and Abstract mark can become items, suits, badges, power-ups, and partner-game assets.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="asset-strip" aria-label="Cyclops suit icons">
+          <img src="assets/cyclops-solitaire/suits/polished/suit-visor-polished.png" alt="Cyclops visor icon" />
+          <img src="assets/cyclops-solitaire/suits/polished/suit-hat-polished.png" alt="Cyclops hat icon" />
+          <img src="assets/cyclops-solitaire/suits/polished/suit-paw-polished.png" alt="Cyclops paw icon" />
+          <img src="assets/cyclops-solitaire/suits/polished/suit-abstract-official-green-flat.png" alt="Abstract icon" />
+        </div>
+      </section>
+
+      <section id="roadmap" class="section-block" aria-labelledby="roadmap-title">
+        <div class="section-heading">
+          <p class="eyebrow">Momentum</p>
+          <h2 id="roadmap-title">Cyclops is turning attention into playable IP.</h2>
+          <p>The brand is built for repeatable moments: games people can play, scores people can chase, clips people can post, and collabs people can recognize immediately.</p>
+        </div>
+
+        <div class="lane-grid">
+          <article>
+            <strong>Play</strong>
+            <p>Keep the arcade active with browser games that are fast to open and easy to share.</p>
+          </article>
+          <article>
+            <strong>Compete</strong>
+            <p>Run score challenges, leaderboard pushes, tournaments, and events for gamers and traders.</p>
+          </article>
+          <article>
+            <strong>Integrate</strong>
+            <p>Bring Cyclops assets into more games as characters, items, effects, cosmetics, and quests.</p>
+          </article>
+          <article>
+            <strong>Scale</strong>
+            <p>Use every playable drop and community moment to make Cyclops harder to ignore.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="links" class="section-block links-block" aria-labelledby="links-title">
+        <div class="section-heading">
+          <p class="eyebrow">Join Cyclops</p>
+          <h2 id="links-title">Play the games, follow the signal, join the next run.</h2>
+        </div>
+
+        <div class="link-grid">
+          <a href="https://x.com/CyclopsOnAbs" target="_blank" rel="noopener noreferrer">
+            <strong>X / Twitter</strong>
+            <span>announcements and clips</span>
+          </a>
+          <a href="https://t.me/Cyclops_Portal" target="_blank" rel="noopener noreferrer">
+            <strong>Telegram</strong>
+            <span>gamers and traders</span>
+          </a>
+          <a href="https://dexscreener.com/abstract/0x0fc6e222f4e27189801909c610ae6172cb69e5a5" target="_blank" rel="noopener noreferrer">
+            <strong>Dexscreener</strong>
+            <span>token chart</span>
+          </a>
+          <button type="button" data-copy="0x0fc6e222f4e27189801909c610ae6172cb69e5a5">
+            <strong>Copy CA</strong>
+            <span>0x0fc6...e5a5</span>
           </button>
-          <button class="mode-option" type="button" data-mode="hard">
-            <span>showdown</span>
-            <small>draw 3 cards</small>
-          </button>
         </div>
-        <button id="mode-cancel" class="quiet-button" type="button">BACK TO BOARD</button>
-      </div>
-    </div>
+      </section>
+    </main>
 
-    <div id="how-to-modal" class="choice-modal" hidden>
-      <div class="mode-card how-to-card" role="dialog" aria-modal="true" aria-labelledby="how-to-title">
-        <h1 id="how-to-title">rules</h1>
-        <ul class="how-to-list">
-          <li>Build columns by alternating red and black suits, counting down from King to Ace.</li>
-          <li>Empty columns can only start with a King.</li>
-          <li>Tap the deck to flip new cards.</li>
-          <li>Move Aces to the top-right stacks, then build each Cyclops suit up to King.</li>
-          <li>Double tap a card to send it home when it fits.</li>
-          <li>Use UNDO when the visor read was wrong.</li>
-        </ul>
-        <button id="how-to-close" class="quiet-button" type="button">GOT IT</button>
-      </div>
-    </div>
+    <footer class="footer">
+      <span>Cyclops</span>
+      <span>Game-native IP, playable arcade drops, and community on Abstract.</span>
+    </footer>
 
-    <div id="leaderboard-modal" class="choice-modal" hidden>
-      <div class="mode-card leaderboard-card" role="dialog" aria-modal="true" aria-labelledby="leaderboard-title">
-        <h1 id="leaderboard-title">ranks</h1>
-        <p id="leaderboard-status" class="leaderboard-status" aria-live="polite">live ranks</p>
-        <div class="leaderboard-tabs" role="tablist" aria-label="Leaderboard modes">
-          <button class="leaderboard-tab active" type="button" data-leaderboard-mode="easy" role="tab" aria-selected="true" aria-controls="leaderboard-panel-easy">warmup</button>
-          <button class="leaderboard-tab" type="button" data-leaderboard-mode="hard" role="tab" aria-selected="false" aria-controls="leaderboard-panel-hard">showdown</button>
+    <div class="player-modal" id="player-modal" hidden>
+      <div class="player-window" role="dialog" aria-modal="true" aria-labelledby="player-title">
+        <div class="player-titlebar">
+          <strong id="player-title">Cyclops Cartridge</strong>
+          <div>
+            <button id="player-minimize" class="window-control" type="button" aria-label="Minimize game" title="Minimize">_</button>
+            <button id="player-size-toggle" class="window-control" type="button" aria-pressed="false" aria-label="Maximize game" title="Maximize">[ ]</button>
+            <button id="player-close" class="window-control" type="button" aria-label="Close game" title="Close">X</button>
+          </div>
         </div>
-        <div class="leaderboard-panels">
-          <section id="leaderboard-panel-easy" class="leaderboard-panel" data-leaderboard-panel="easy" role="tabpanel">
-            <h2>warmup mode</h2>
-            <ol id="leaderboard-easy" class="leaderboard-list"></ol>
-          </section>
-          <section id="leaderboard-panel-hard" class="leaderboard-panel" data-leaderboard-panel="hard" role="tabpanel" hidden>
-            <h2>showdown mode</h2>
-            <ol id="leaderboard-hard" class="leaderboard-list"></ol>
-          </section>
-        </div>
-        <button id="leaderboard-close" class="quiet-button" type="button">GOT IT</button>
+        <iframe id="player-frame" title="Cyclops game preview" src="about:blank" loading="lazy" allowfullscreen></iframe>
       </div>
     </div>
 
-    <div id="no-move-modal" class="choice-modal" hidden>
-      <div class="mode-card" role="dialog" aria-modal="true" aria-labelledby="no-move-title">
-        <h1 id="no-move-title">board locked</h1>
-        <p class="modal-copy">board's looking cooked</p>
-        <div class="modal-actions">
-          <button id="no-move-new" class="mode-option compact" type="button">NEW RUN</button>
-          <button id="no-move-keep" class="mode-option compact secondary" type="button">KEEP LOOKING</button>
-        </div>
-      </div>
-    </div>
+    <button class="player-minimized-tab" id="player-restore" type="button" hidden>
+      <span id="player-restore-title">Cyclops Cartridge</span>
+      <strong>Resume</strong>
+    </button>
 
-    <audio id="background-music" src="../assets/cyclops-solitaire/audio/A_Single_Horizon.mp3" loop preload="auto"></audio>
-    <div class="audio-dock" aria-label="Audio controls">
-      <button id="music-toggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Play music"></button>
-      <div class="audio-sliders">
-        <label class="audio-slider" for="music-volume">
-          <span>Music</span>
-          <input id="music-volume" type="range" min="0" max="100" value="25">
-        </label>
-        <label class="audio-slider" for="sfx-volume">
-          <span>Sounds</span>
-          <input id="sfx-volume" type="range" min="0" max="100" value="75">
-        </label>
-      </div>
-    </div>
-  </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="./game.js"></script>
-</body>
+    <script src="script.js?v=window-controls-0524"></script>
+  </body>
 </html>
