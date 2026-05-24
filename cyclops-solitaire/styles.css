@@ -898,12 +898,12 @@ button {
   }
 
   .top-row {
-    grid-template-columns: var(--card-w) calc(var(--card-w) + 76px) repeat(4, var(--card-w));
+    grid-template-columns: var(--card-w) calc(var(--card-w) + 42px) repeat(4, var(--card-w));
     justify-content: start;
   }
 
   .waste {
-    width: calc(var(--card-w) + 76px);
+    width: calc(var(--card-w) + 42px);
   }
 
   .waste .playing-card:nth-child(2) {
