@@ -451,7 +451,7 @@ p {
 .highway-title {
   background:
     linear-gradient(180deg, rgba(8, 9, 16, 0.1), rgba(8, 9, 16, 0.72)),
-    url("assets/neon-highway-bg.jfif") center / cover no-repeat;
+    url("assets/HighwayHavocBackdrop2.jfif") center / cover no-repeat;
   border: 3px solid var(--line);
   box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.34);
   color: var(--gold);
@@ -664,9 +664,10 @@ p {
 }
 
 .game-highway .game-card-media {
+  align-items: start;
   background:
-    linear-gradient(180deg, rgba(9, 10, 18, .08), rgba(9, 10, 18, .72)),
-    url("assets/neon-highway-bg.jfif") center / cover no-repeat;
+    linear-gradient(180deg, rgba(9, 10, 18, .06), rgba(9, 10, 18, .68)),
+    url("assets/HighwayHavocBackdrop2.jfif") center / cover no-repeat;
 }
 
 .game-solitaire .game-card-media {
@@ -685,21 +686,31 @@ p {
   width: 100%;
 }
 
+.game-catch .game-card-media {
+  align-items: end;
+  background:
+    linear-gradient(180deg, rgba(8, 10, 14, .01), rgba(8, 10, 14, .12)),
+    url("assets/CatchIt.jfif") center 12% / cover no-repeat;
+}
+
+.game-catch .game-card-media strong {
+  color: var(--gold);
+  font-size: clamp(24px, 3vw, 42px);
+}
+
 .game-space .game-card-media {
   align-items: center;
   background:
-    radial-gradient(circle at 72% 28%, rgba(41, 220, 130, .34), transparent 8rem),
-    radial-gradient(circle at 25% 28%, rgba(103, 217, 255, .28), transparent 7rem),
-    linear-gradient(135deg, rgba(12, 16, 33, .98), rgba(35, 17, 62, .96));
+    linear-gradient(180deg, rgba(8, 10, 14, .03), rgba(8, 10, 14, .34)),
+    url("assets/InSpaceBackdrop.png") center / cover no-repeat;
   justify-items: center;
 }
 
 .game-clopped .game-card-media {
   align-items: center;
   background:
-    linear-gradient(135deg, rgba(223, 22, 39, .26), rgba(255, 212, 71, .2)),
-    repeating-linear-gradient(135deg, rgba(255, 244, 220, .18) 0 6px, transparent 6px 14px),
-    #151018;
+    linear-gradient(180deg, rgba(10, 8, 6, .04), rgba(10, 8, 6, .30)),
+    url("assets/GetCloppedBackdrop.jpg") center / cover no-repeat;
   justify-items: center;
 }
 
@@ -717,6 +728,15 @@ p {
   image-rendering: pixelated;
   max-width: 120px;
   width: 46%;
+}
+
+.game-space .game-card-media img,
+.game-space .game-card-media span,
+.game-clopped .game-card-media img,
+.game-clopped .game-card-media span,
+.game-highway .game-card-media span,
+.game-highway .game-card-media strong {
+  display: none;
 }
 
 .game-space .game-card-media span,
@@ -898,6 +918,7 @@ p {
   display: flex;
   justify-content: space-between;
   min-height: 44px;
+  padding: 8px 12px;
 }
 
 .player-titlebar strong {
@@ -937,7 +958,7 @@ p {
 .player-window iframe {
   border: 0;
   display: block;
-  height: calc(100% - 44px);
+  height: calc(100% - 48px);
   width: 100%;
 }
 
@@ -954,11 +975,11 @@ p {
 }
 
 .player-modal.player-expanded .player-window iframe {
-  height: calc(100% - 44px);
+  height: calc(100% - 48px);
 }
 
 .player-minimized-tab {
-  align-items: center;
+  align-items: flex-start;
   background: #10151c;
   border: 3px solid var(--gold);
   bottom: 18px;
@@ -966,7 +987,8 @@ p {
   color: var(--panel);
   cursor: pointer;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 4px;
   max-width: min(360px, calc(100vw - 36px));
   padding: 10px 12px;
   position: fixed;
@@ -983,7 +1005,7 @@ p {
 
 .player-minimized-tab strong {
   color: var(--gold);
-  flex: 0 0 auto;
+  line-height: 1.35;
 }
 
 .toast {
@@ -1143,14 +1165,43 @@ p {
     align-items: center;
     flex-direction: row;
     gap: 8px;
+    min-height: 42px;
+    padding: 5px 8px;
+  }
+
+  .player-titlebar strong {
+    flex: 1 1 auto;
+    font-size: 9px;
+    line-height: 1.25;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .player-titlebar div {
+    flex: 0 0 auto;
+    gap: 5px;
+  }
+
+  .player-titlebar a,
+  .player-titlebar button {
+    font-size: 13px;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 3px 6px;
+  }
+
+  #player-size-toggle {
+    min-width: 38px;
   }
 
   .player-window iframe {
-    height: calc(100% - 44px);
+    height: calc(100% - 42px);
   }
 
   .player-modal.player-expanded .player-window iframe {
-    height: calc(100% - 44px);
+    height: calc(100% - 42px);
   }
 }
 
