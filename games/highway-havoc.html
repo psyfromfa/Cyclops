@@ -779,7 +779,7 @@ function recordInput(action){
 }
 // =============================================================
 
-function resetGame(){G={phase:'playing',score:0,hiscore:G.hiscore||0,dist:0,time:0,speed:cfg.baseSpeed,maxSpd:cfg.baseSpeed,px:130,py:LANE_Y[1],jumping:false,jumpVY:0,jumpZ:0,canJump:true,jumpCount:0,trickCount:0,trickActive:false,trickTimer:0,trickScore:false,scoreFlash:0,nearMissFlash:0,obstacles:[],warnings:[],particles:[],explosions:[],roadOff:0,frame:0,spawnTimer:40,shakeX:0,shakeY:0,lastTier:0,flash:0,sunPulse:0,zone:'highway',tunnelT:0,wallScrollX:W+40,exitWallX:W+200,truckCrashTime:0,exitArchX:-1,boss:resetBoss(),truck:resetTruck(),
+function resetGame(){G={phase:'playing',paused:false,score:0,hiscore:G.hiscore||0,dist:0,time:0,speed:cfg.baseSpeed,maxSpd:cfg.baseSpeed,px:130,py:LANE_Y[1],jumping:false,jumpVY:0,jumpZ:0,canJump:true,jumpCount:0,trickCount:0,trickActive:false,trickTimer:0,trickScore:false,scoreFlash:0,nearMissFlash:0,obstacles:[],warnings:[],particles:[],explosions:[],roadOff:0,frame:0,spawnTimer:40,shakeX:0,shakeY:0,lastTier:0,flash:0,sunPulse:0,zone:'highway',tunnelT:0,wallScrollX:W+40,exitWallX:W+200,truckCrashTime:0,exitArchX:-1,boss:resetBoss(),truck:resetTruck(),
   // Replay-validation fields (Phase 1)
   simTick:0, inputLog:[], runStartedAt:Date.now(), seed:0
 };lOff[0]=0;lOff[1]=0;lOff[2]=0;nextHonk=60;sirenCount=0;sirenCooldown=0;
@@ -788,6 +788,28 @@ function resetGame(){G={phase:'playing',score:0,hiscore:G.hiscore||0,dist:0,time
   genNeonCity();}
 resetGame();
 G.phase='start';
+
+function setGamePaused(paused){
+  if(!G||G.phase!=='playing')return;
+  G.paused=!!paused;
+  if(G.paused){
+    Object.keys(keys).forEach(function(code){keys[code]=false;});
+    stopMusic();
+  }else if(!musicMuted&&!musicPlaying){
+    startMusic();
+  }
+}
+function togglePause(){setGamePaused(!G.paused);}
+window.CyclopsHighwayHavoc={
+  pause:function(){setGamePaused(true);},
+  resume:function(){setGamePaused(false);},
+  togglePause:togglePause
+};
+window.addEventListener('message',function(event){
+  if(!event.data||event.data.source!=='cyclops-site')return;
+  if(event.data.action==='pause')setGamePaused(true);
+  if(event.data.action==='resume')setGamePaused(false);
+});
 
 function createObs(type,lane){
   const base={type,x:W+80,warnTimer:cfg.warnDur,active:false,warned:false,dodged:false};
@@ -1017,6 +1039,8 @@ function updateTruck(dt){
 // Input
 const keys={};
 document.addEventListener('keydown',e=>{keys[e.code]=true;  // Browse-mode leaderboard: only ESC closes it; ignore other game keys
+  if(G.phase==='playing'&&e.code==='KeyP'){e.preventDefault();togglePause();return;}
+  if(G.phase==='playing'&&G.paused){e.preventDefault();return;}
   if(lbBrowseReturnPhase){
     if(e.code==='Escape'){e.preventDefault();closeLeaderboardBrowse();}
     return;
@@ -1835,6 +1859,7 @@ function showLeaderboard(){
 
 function update(dt){
   if(!dt)dt=1;
+  if(G.phase==='playing'&&G.paused)return;
   if(G.phase==='dying'){updateEffects(dt);G.shakeX*=Math.pow(.9,dt);G.shakeY*=Math.pow(.9,dt);return;}
   if(G.phase==='victory'){G.frame++;G.victoryTimer=(G.victoryTimer||0)+dt/60;G.roadOff+=G.speed*dt;for(let i=0;i<3;i++)lOff[i]+=lSpeeds[i]*G.speed*dt;
     // Player rides off to the right — accelerate px while camera stays
@@ -2632,6 +2657,22 @@ function draw(){
 
 
 
+  if(G.phase==='playing'&&G.paused){
+    ctx.save();
+    ctx.fillStyle='rgba(0,0,0,0.58)';
+    ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#ffcc00';
+    ctx.font='bold 24px "Press Start 2P"';
+    ctx.textAlign='center';
+    ctx.shadowColor='#000';
+    ctx.shadowBlur=8;
+    ctx.fillText('PAUSED',W/2,H/2-8);
+    ctx.fillStyle='#fff4dc';
+    ctx.font='8px "Press Start 2P"';
+    ctx.fillText('PRESS P TO RESUME',W/2,H/2+24);
+    ctx.restore();
+  }
+
   // === TUNNEL WARNING BANNER (drawn last so it's always visible) ===
   // Only shows once truck finishes barrel phase, until the crash.
   var warnActive=G.truck.active&&G.truck.warningShown&&!G.truck.crashed;
@@ -2981,7 +3022,7 @@ const MAX_TICKS_PER_FRAME = 8; // safety: prevent spiral-of-death on slow device
   let safety = MAX_TICKS_PER_FRAME;
   while(simAccum >= SIM_MS && safety-- > 0){
     update(SIM_DT);
-    if(G.phase==='playing') G.simTick = (G.simTick|0) + 1;
+    if(G.phase==='playing'&&!G.paused) G.simTick = (G.simTick|0) + 1;
     simAccum -= SIM_MS;
   }
   if(simAccum > SIM_MS * MAX_TICKS_PER_FRAME) simAccum = 0; // bail if super slow

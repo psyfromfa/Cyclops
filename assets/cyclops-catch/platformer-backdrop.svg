@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" role="img" aria-label="bright platform game backdrop">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#42c8ff"/>
+      <stop offset=".5" stop-color="#83e8ff"/>
+      <stop offset="1" stop-color="#fff0a6"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#35dc6c"/>
+      <stop offset="1" stop-color="#0b8a42"/>
+    </linearGradient>
+    <linearGradient id="dirt" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#a25b26"/>
+      <stop offset="1" stop-color="#5f2c18"/>
+    </linearGradient>
+    <pattern id="dirtDots" width="38" height="38" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="11" r="3" fill="#c37a34" opacity=".45"/>
+      <circle cx="28" cy="27" r="4" fill="#4a2416" opacity=".28"/>
+    </pattern>
+  </defs>
+
+  <rect width="960" height="540" fill="url(#sky)"/>
+  <circle cx="805" cy="91" r="58" fill="#ffe45a"/>
+  <circle cx="805" cy="91" r="86" fill="#ffe45a" opacity=".22"/>
+
+  <g fill="#fff" opacity=".9">
+    <path d="M95 100c14-24 49-25 62 0 18-9 42 5 42 26H55c0-20 22-33 40-26z"/>
+    <path d="M590 71c14-23 47-24 62 0 21-11 46 7 43 29H545c0-22 23-36 45-29z"/>
+    <path d="M741 158c10-18 35-18 46 0 17-7 35 4 36 22H704c0-17 18-27 37-22z"/>
+  </g>
+
+  <path d="M0 342c120-70 215-66 320-5 108 63 212 45 318-8 127-64 232-53 322 14v197H0z" fill="#31ba69"/>
+  <path d="M0 384c95-55 194-47 282 8 103 63 201 61 325 0 122-61 247-54 353 12v136H0z" fill="#209d55"/>
+  <path d="M0 421c117-44 231-38 340 15 110 53 214 39 315-9 111-52 216-46 305 1v112H0z" fill="url(#grass)"/>
+
+  <g opacity=".9">
+    <rect x="88" y="238" width="154" height="34" rx="8" fill="#f9c24d" stroke="#3c1b0c" stroke-width="8"/>
+    <rect x="88" y="268" width="154" height="60" fill="url(#dirt)" stroke="#3c1b0c" stroke-width="8"/>
+    <rect x="88" y="268" width="154" height="60" fill="url(#dirtDots)"/>
+
+    <rect x="368" y="188" width="222" height="34" rx="8" fill="#f9c24d" stroke="#3c1b0c" stroke-width="8"/>
+    <rect x="368" y="218" width="222" height="56" fill="url(#dirt)" stroke="#3c1b0c" stroke-width="8"/>
+    <rect x="368" y="218" width="222" height="56" fill="url(#dirtDots)"/>
+
+    <rect x="711" y="251" width="151" height="34" rx="8" fill="#f9c24d" stroke="#3c1b0c" stroke-width="8"/>
+    <rect x="711" y="281" width="151" height="56" fill="url(#dirt)" stroke="#3c1b0c" stroke-width="8"/>
+    <rect x="711" y="281" width="151" height="56" fill="url(#dirtDots)"/>
+  </g>
+
+  <g fill="#f8d35d" stroke="#8a4b13" stroke-width="5">
+    <circle cx="127" cy="206" r="12"/>
+    <circle cx="166" cy="201" r="12"/>
+    <circle cx="205" cy="206" r="12"/>
+    <circle cx="443" cy="151" r="12"/>
+    <circle cx="483" cy="146" r="12"/>
+    <circle cx="523" cy="151" r="12"/>
+    <circle cx="760" cy="220" r="12"/>
+    <circle cx="804" cy="214" r="12"/>
+  </g>
+
+  <rect x="0" y="462" width="960" height="78" fill="url(#dirt)" stroke="#3c1b0c" stroke-width="8"/>
+  <rect x="0" y="455" width="960" height="26" fill="#35dc6c" stroke="#0d612f" stroke-width="6"/>
+  <rect x="0" y="486" width="960" height="54" fill="url(#dirtDots)"/>
+  <path d="M0 0h960v540H0z" fill="none" stroke="#000" stroke-opacity=".08" stroke-width="14"/>
+</svg>
