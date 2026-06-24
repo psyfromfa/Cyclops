@@ -464,7 +464,17 @@ p {
   text-shadow: 3px 3px 0 var(--red-dark), 6px 6px 0 #000;
 }
 
-.featured-cartridge .highway-title {
+.racing-title {
+  background:
+    linear-gradient(180deg, rgba(8, 14, 12, 0.02), rgba(8, 14, 12, 0.16)),
+    url("assets/RaceAgainstCyclops.png") center top / cover no-repeat;
+  border: 3px solid var(--line);
+  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.34);
+  min-height: 230px;
+}
+
+.featured-cartridge .highway-title,
+.featured-cartridge .racing-title {
   margin-bottom: 18px;
 }
 
@@ -668,6 +678,13 @@ p {
   background:
     linear-gradient(180deg, rgba(9, 10, 18, .06), rgba(9, 10, 18, .68)),
     url("assets/HighwayHavocBackdrop2.jfif") center / cover no-repeat;
+}
+
+.game-racing .game-card-media {
+  align-items: stretch;
+  background:
+    linear-gradient(180deg, rgba(8, 14, 12, .01), rgba(8, 14, 12, .10)),
+    url("assets/RaceAgainstCyclops.png") center top / cover no-repeat;
 }
 
 .game-solitaire .game-card-media {

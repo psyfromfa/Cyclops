@@ -50,18 +50,37 @@ function getGameWindow() {
   }
 }
 
+function sendGameMessage(action) {
+  const gameWindow = getGameWindow();
+  try {
+    gameWindow?.postMessage?.({ source: "cyclops-site", action }, "*");
+  } catch {
+    // The window controls should keep working even if a cartridge is cross-origin or still loading.
+  }
+}
+
 function pauseEmbeddedGame() {
   const gameWindow = getGameWindow();
-  gameWindow?.CyclopsHighwayHavoc?.pause?.();
-  gameWindow?.CyclopsSolitaireAudio?.pause?.();
-  gameWindow?.postMessage?.({ source: "cyclops-site", action: "pause" }, "*");
+  try {
+    gameWindow?.CyclopsHighwayHavoc?.pause?.();
+    gameWindow?.CyclopsSolitaireAudio?.pause?.();
+    gameWindow?.CyclopsCatchGame?.pause?.();
+  } catch {
+    // Keep the parent window state responsive if the iframe cannot be inspected.
+  }
+  sendGameMessage("pause");
 }
 
 function resumeEmbeddedGame() {
   const gameWindow = getGameWindow();
-  gameWindow?.CyclopsHighwayHavoc?.resume?.();
-  gameWindow?.CyclopsSolitaireAudio?.start?.();
-  gameWindow?.postMessage?.({ source: "cyclops-site", action: "resume" }, "*");
+  try {
+    gameWindow?.CyclopsHighwayHavoc?.resume?.();
+    gameWindow?.CyclopsSolitaireAudio?.start?.();
+    gameWindow?.CyclopsCatchGame?.resume?.();
+  } catch {
+    // Resume is best-effort; the iframe also receives the message below.
+  }
+  sendGameMessage("resume");
 }
 
 function openPlayer(src, title) {
@@ -69,7 +88,7 @@ function openPlayer(src, title) {
     playerFrame.src = src;
   }
   playerTitle.textContent = title || "Cyclops Cartridge";
-  playerRestoreTitle.textContent = playerTitle.textContent;
+  playerRestoreTitle.textContent = "Paused";
   setPlayerExpanded(false);
   playerRestore.hidden = true;
   playerModal.hidden = false;
@@ -78,11 +97,11 @@ function openPlayer(src, title) {
 }
 
 function minimizePlayer() {
-  playerRestoreTitle.textContent = playerTitle.textContent || "Cyclops Cartridge";
-  pauseEmbeddedGame();
+  playerRestoreTitle.textContent = "Paused";
   playerModal.hidden = true;
   playerRestore.hidden = false;
   document.body.classList.remove("player-open");
+  pauseEmbeddedGame();
 }
 
 function restorePlayer() {
@@ -118,9 +137,17 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
   });
 });
 
-playerMinimize.addEventListener("click", minimizePlayer);
-playerClose.addEventListener("click", closePlayer);
-playerRestore.addEventListener("click", restorePlayer);
+playerMinimize?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  minimizePlayer();
+});
+playerClose?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  closePlayer();
+});
+playerRestore?.addEventListener("click", restorePlayer);
 playerFrame.addEventListener("load", () => {
   if (playerModal.hidden) {
     return;
@@ -129,7 +156,9 @@ playerFrame.addEventListener("load", () => {
   window.setTimeout(resumeEmbeddedGame, 250);
 });
 
-playerSizeToggle.addEventListener("click", () => {
+playerSizeToggle?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
   setPlayerExpanded(!playerModal.classList.contains("player-expanded"));
 });
 

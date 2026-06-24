@@ -1,0 +1,22 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/cyclops-solitaire",
+      "destination": "/cyclops-solitaire/index.html"
+    },
+    {
+      "source": "/cyclops-solitaire/",
+      "destination": "/cyclops-solitaire/index.html"
+    },
+    {
+      "source": "/cyclops-pinball",
+      "destination": "/cyclops-pinball/index.html"
+    },
+    {
+      "source": "/cyclops-pinball/",
+      "destination": "/cyclops-pinball/index.html"
+    }
+  ]
+}

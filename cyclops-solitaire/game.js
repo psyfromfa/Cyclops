@@ -1041,6 +1041,13 @@ function pauseMusic() {
   updateMusicToggle();
 }
 
+function pauseMusicFromParent() {
+  state.musicRequestId += 1;
+  if (els.music) els.music.pause();
+  state.musicPlaying = false;
+  updateMusicToggle();
+}
+
 function updateMusicVolume() {
   if (els.music) els.music.volume = state.musicVolume;
 }
@@ -1094,8 +1101,14 @@ function startMusicFromParent() {
 
 window.CyclopsSolitaireAudio = {
   start: startMusicFromParent,
-  pause: pauseMusic
+  pause: pauseMusicFromParent
 };
+
+window.addEventListener("message", (event) => {
+  if (event.data?.source !== "cyclops-site") return;
+  if (event.data.action === "pause") pauseMusicFromParent();
+  if (event.data.action === "resume") startMusicFromParent();
+});
 
 function getAudioContext() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
