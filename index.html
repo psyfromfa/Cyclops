@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=race-event-0624" />
+    <link rel="stylesheet" href="styles.css?v=highway-main-0626" />
   </head>
   <body>
     <div class="site-bg" aria-hidden="true"></div>
@@ -70,21 +70,24 @@
 
         <aside class="featured-cartridge" aria-label="Featured game">
           <div class="cartridge-header">
-            <span>Live event</span>
-            <strong>Raffle race</strong>
+            <span>Main game</span>
+            <strong>Live now</strong>
           </div>
-          <div class="title-art racing-title" role="img" aria-label="Race Against Cyclops event preview"></div>
+          <div class="title-art highway-title" role="img" aria-label="Cyclops: Highway Havoc!">
+            <span>CYCLOPS:</span>
+            <strong>Highway Havoc!</strong>
+          </div>
           <div class="cartridge-body highway-body">
             <div>
-              <h2>Race Against Cyclops</h2>
-              <p>Enter Gigaverse races, then watch Cyclops line up against your Giglings. Any Gigling faster than Cyclops earns raffle tickets for that wallet, with prizes awarded at the end of the event.</p>
+              <h2>Highway Havoc!</h2>
+              <p>The flagship arcade drop for Cyclops: fast, loud, playable in-browser, and built to turn the character into something people can compete with, clip, and share.</p>
               <div class="mini-actions">
-                <button class="button small primary" type="button" data-open-player="https://cyclopsracing.vercel.app/" data-title="Race Against Cyclops">Open Event</button>
+                <button class="button small primary" type="button" data-open-player="games/highway-havoc.html" data-title="Cyclops: Highway Havoc!">Play Now</button>
               </div>
-              <ul class="feature-list" aria-label="Race Against Cyclops features">
-                <li>Race through Gigaverse</li>
-                <li>Live race data and spectator replay</li>
-                <li>Beat Cyclops to earn raffle tickets</li>
+              <ul class="feature-list" aria-label="Highway Havoc! features">
+                <li>Main live arcade game</li>
+                <li>Built for score chasing and clips</li>
+                <li>Playable proof of Cyclops IP</li>
               </ul>
             </div>
           </div>
@@ -99,16 +102,19 @@
         </div>
 
         <div class="game-grid">
-          <article class="game-card ready featured-game game-racing">
-            <div class="game-card-media" aria-hidden="true"></div>
+          <article class="game-card ready featured-game game-highway">
+            <div class="game-card-media" aria-hidden="true">
+              <span class="media-kicker">main game</span>
+              <strong>Highway Havoc!</strong>
+            </div>
             <div class="cart-label">
               <span>01</span>
-              <strong>Live event</strong>
+              <strong>Live</strong>
             </div>
-            <h3>Race Against Cyclops</h3>
-            <p>Sign up for Gigaverse races, watch Cyclops race your Giglings, and earn raffle tickets when your wallet beats him.</p>
+            <h3>Highway Havoc!</h3>
+            <p>The main Cyclops arcade game: a high-energy browser run made for quick sessions.</p>
             <div class="card-actions">
-              <button class="button small primary" type="button" data-open-player="https://cyclopsracing.vercel.app/" data-title="Race Against Cyclops">Open Event</button>
+              <button class="button small primary" type="button" data-open-player="games/highway-havoc.html" data-title="Cyclops: Highway Havoc!">Play Now</button>
             </div>
           </article>
 
@@ -136,7 +142,20 @@
             <h3>Catch It!</h3>
             <p>Move Cyclops, catch icons, and dodge bombs. Fill the visor gauge and use it to clear the screen!</p>
             <div class="card-actions">
-                <button class="button small primary" type="button" data-open-player="games/cyclops-catch.html?v=catch-hud-card-0526" data-title="Cyclops: Catch It!">Play Now</button>
+              <button class="button small primary" type="button" data-open-player="games/cyclops-catch.html?v=catch-hud-card-0526" data-title="Cyclops: Catch It!">Play Now</button>
+            </div>
+          </article>
+
+          <article class="game-card ready game-racing">
+            <div class="game-card-media" aria-hidden="true"></div>
+            <div class="cart-label">
+              <span>04</span>
+              <strong>Event over</strong>
+            </div>
+            <h3>Race Against Cyclops</h3>
+            <p>A Gigaverse racing event where players watched Cyclops race their Giglings and earned raffle tickets when their wallet beat him.</p>
+            <div class="card-actions">
+              <button class="button small primary" type="button" data-open-player="https://cyclopsracing.vercel.app/" data-title="Race Against Cyclops">View Event</button>
             </div>
           </article>
 
@@ -146,7 +165,7 @@
               <span>Abstract mission</span>
             </div>
             <div class="cart-label">
-              <span>04</span>
+              <span>05</span>
               <strong>In dev</strong>
             </div>
             <h3>In Space!</h3>
@@ -162,7 +181,7 @@
               <span>side-scroller</span>
             </div>
             <div class="cart-label">
-              <span>05</span>
+              <span>06</span>
               <strong>In dev</strong>
             </div>
             <h3>Get Clopped!</h3>
@@ -290,6 +309,6 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="script.js?v=race-event-0624"></script>
+    <script src="script.js?v=highway-main-0626"></script>
   </body>
 </html>
